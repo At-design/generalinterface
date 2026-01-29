@@ -1,0 +1,2 @@
+# generalinterface
+interface1
