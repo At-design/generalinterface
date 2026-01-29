@@ -203,12 +203,12 @@
         }
 
         .preview-slide {
-            display: none;
+            display: none !important;
             animation: fadeIn 0.4s ease;
         }
 
         .preview-slide.active {
-            display: block;
+            display: block !important;
         }
 
         .preview-slide img {
@@ -633,5 +633,71 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript for Materials Carousel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.preview-slide');
+            const indicators = document.querySelectorAll('.preview-indicator');
+            const prevBtn = document.getElementById('prevMaterialBtn');
+            const nextBtn = document.getElementById('nextMaterialBtn');
+            const counter = document.getElementById('currentMaterial');
+            
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function updateCarousel() {
+                // Update slides
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active');
+                    if (index === currentIndex) {
+                        slide.classList.add('active');
+                    }
+                });
+
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.remove('active');
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    }
+                });
+
+                // Update counter
+                counter.textContent = currentIndex + 1;
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            // Event listeners for buttons
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            // Event listeners for indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    prevSlide();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
