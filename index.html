@@ -202,21 +202,43 @@
             padding: 0 60px;
         }
 
+        .preview-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border-radius: 12px;
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
         .preview-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: none !important;
             animation: fadeIn 0.4s ease;
+            background: #1a1a1a;
         }
 
         .preview-slide.active {
-            display: block !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
         }
 
         .preview-slide img {
-            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(74, 158, 255, 0.2);
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(74, 158, 255, 0.15);
         }
 
         @keyframes fadeIn {
@@ -544,26 +566,28 @@
         <div class="materials-preview">
             <button class="preview-btn prev" id="prevMaterialBtn"></button>
             
-            <div class="preview-slide active">
-                <img src="https://assets.superhivemarket.com/cache/035a06f672035c935d81231563a3ebdc.png" alt="Material 1">
-            </div>
-            <div class="preview-slide">
-                <img src="https://assets.superhivemarket.com/cache/d0108af9f394b0a660fc93740c043bec.png" alt="Material 2">
-            </div>
-            <div class="preview-slide">
-                <img src="https://assets.superhivemarket.com/cache/d1e3d7618cbb0fe442cddb3137cf6c42.png" alt="Material 3">
-            </div>
-            <div class="preview-slide">
-                <img src="https://assets.superhivemarket.com/cache/f5072882c58f815420f6ff3dcc561368.png" alt="Material 4">
-            </div>
-            <div class="preview-slide">
-                <img src="https://assets.superhivemarket.com/cache/de0af3fc51a1012f4aacc3dd67acf84a.png" alt="Material 5">
-            </div>
-            <div class="preview-slide">
-                <img src="https://assets.superhivemarket.com/cache/a7524cc32cc496a22ab4c1ce2c4aaf71.png" alt="Material 6">
-            </div>
-            <div class="preview-slide">
-                <img src="https://assets.superhivemarket.com/cache/44486993fef26954b725f3b1025976a0.png" alt="Material 7">
+            <div class="preview-container">
+                <div class="preview-slide active">
+                    <img src="https://assets.superhivemarket.com/cache/035a06f672035c935d81231563a3ebdc.png" alt="Material 1">
+                </div>
+                <div class="preview-slide">
+                    <img src="https://assets.superhivemarket.com/cache/d0108af9f394b0a660fc93740c043bec.png" alt="Material 2">
+                </div>
+                <div class="preview-slide">
+                    <img src="https://assets.superhivemarket.com/cache/d1e3d7618cbb0fe442cddb3137cf6c42.png" alt="Material 3">
+                </div>
+                <div class="preview-slide">
+                    <img src="https://assets.superhivemarket.com/cache/f5072882c58f815420f6ff3dcc561368.png" alt="Material 4">
+                </div>
+                <div class="preview-slide">
+                    <img src="https://assets.superhivemarket.com/cache/de0af3fc51a1012f4aacc3dd67acf84a.png" alt="Material 5">
+                </div>
+                <div class="preview-slide">
+                    <img src="https://assets.superhivemarket.com/cache/a7524cc32cc496a22ab4c1ce2c4aaf71.png" alt="Material 6">
+                </div>
+                <div class="preview-slide">
+                    <img src="https://assets.superhivemarket.com/cache/44486993fef26954b725f3b1025976a0.png" alt="Material 7">
+                </div>
             </div>
             
             <button class="preview-btn next" id="nextMaterialBtn"></button>
