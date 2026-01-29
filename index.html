@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scene Maker Addon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            padding: 40px 20px;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 15px;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4a9eff 0%, #6bb3ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+        }
+
+        .header .tagline {
+            font-size: 1.4em;
+            color: #b8b8d1;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Update Badge */
+        .update-info {
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border-left: 4px solid #4a9eff;
+            padding: 25px 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(74, 158, 255, 0.2);
+        }
+
+        .update-info a {
+            color: #4a9eff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .update-info a:hover {
+            color: #6bb3ff;
+        }
+
+        /* Media Containers */
+        .media-block {
+            margin: 50px 0;
+            position: relative;
+        }
+
+        .media-block img,
+        .media-block .gif-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(74, 158, 255, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .media-block img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(74, 158, 255, 0.25);
+        }
+
+        /* Two Column Layout */
+        .two-columns {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .two-columns > * {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .two-columns img {
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(74, 158, 255, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .two-columns img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(74, 158, 255, 0.25);
+        }
+
+        /* Interface Preview */
+        .interface-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 50px 0;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .interface-section h2 {
+            font-size: 2em;
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(74, 158, 255, 0.3);
+        }
+
+        .interface-section p {
+            color: #b8b8d1;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .interface-content {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .interface-content img {
+            max-width: 320px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .interface-content img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 35px rgba(74, 158, 255, 0.3);
+        }
+
+        .interface-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Materials Preview Carousel */
+        .materials-preview {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 60px;
+        }
+
+        .preview-slide {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .preview-slide.active {
+            display: block;
+        }
+
+        .preview-slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(74, 158, 255, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .preview-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: rgba(74, 158, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .preview-btn::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-top: 3px solid white;
+            border-right: 3px solid white;
+        }
+
+        .preview-btn:hover {
+            background: rgba(74, 158, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(74, 158, 255, 0.6);
+        }
+
+        .preview-btn.prev {
+            left: 0;
+        }
+
+        .preview-btn.prev::before {
+            transform: rotate(-135deg);
+            margin-left: 3px;
+        }
+
+        .preview-btn.next {
+            right: 0;
+        }
+
+        .preview-btn.next::before {
+            transform: rotate(45deg);
+            margin-right: 3px;
+        }
+
+        .preview-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .preview-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(74, 158, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .preview-indicator:hover {
+            background: rgba(74, 158, 255, 0.6);
+        }
+
+        .preview-indicator.active {
+            background: rgba(74, 158, 255, 1);
+            transform: scale(1.3);
+        }
+
+        .preview-counter {
+            text-align: center;
+            color: #b8b8d1;
+            font-size: 0.95em;
+            margin-top: 15px;
+        }
+
+        .preview-counter span {
+            color: #4a9eff;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        .materials-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            padding: 50px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .materials-section h3 {
+            font-size: 2.2em;
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-shadow: 0 2px 15px rgba(74, 158, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .materials-section h3::before {
+            content: '🎨';
+            font-size: 1.2em;
+        }
+
+        .materials-intro {
+            color: #b8b8d1;
+            font-size: 1.15em;
+            margin-bottom: 35px;
+            padding: 20px;
+            background: rgba(74, 158, 255, 0.05);
+            border-left: 4px solid #4a9eff;
+            border-radius: 8px;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .material-item {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1) 0%, rgba(74, 158, 255, 0.05) 100%);
+            padding: 20px 24px;
+            border-radius: 10px;
+            text-align: center;
+            color: #d0d0d0;
+            font-size: 1.05em;
+            font-weight: 500;
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .material-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .material-item:hover::before {
+            left: 100%;
+        }
+
+        .material-item:hover {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2) 0%, rgba(74, 158, 255, 0.1) 100%);
+            border-color: rgba(74, 158, 255, 0.4);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.3);
+        }
+
+        .material-count {
+            display: inline-block;
+            background: rgba(74, 158, 255, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        /* Features List */
+        .features-section {
+            margin: 50px 0;
+        }
+
+        .features-section h2 {
+            font-size: 2em;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, #1a1a1a 0%, #202020 100%);
+            padding: 35px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #4a9eff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(74, 158, 255, 0.1);
+        }
+
+        .feature-item:hover {
+            background: linear-gradient(135deg, #1f1f1f 0%, #252525 100%);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2);
+        }
+
+        .feature-item h3 {
+            font-size: 1.6em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-item p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Section Divider */
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4a9eff, transparent);
+            margin: 60px 0;
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+        }
+
+        /* Highlight Text */
+        .highlight {
+            color: #4a9eff;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .interface-section,
+            .materials-section {
+                padding: 25px;
+            }
+
+            .interface-content {
+                flex-direction: column;
+            }
+
+            .interface-content img {
+                max-width: 100%;
+            }
+
+            .two-columns {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>SCENE MAKER ADDON</h1>
+            <p class="tagline">Créez votre Scène Facilement Et Rapidement</p>
+        </div>
+
+        <!-- Update Info -->
+        <div class="update-info">
+            Cette Addon est une mise à jour du pack <a href="https://superhivemarket.com/products/scene-maker" target="_blank">Scene Maker</a> 😊
+        </div>
+
+        <!-- Main Demo GIF -->
+        <div class="media-block">
+            <img src="https://assets.superhivemarket.com/cache/a43a42f7ee0f2227b575b1c944439c73.gif" alt="Scene Maker Demo">
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Interface Overview -->
+        <div class="media-block">
+            <img src="https://assets.superhivemarket.com/cache/e629816b964b322a7bf0b4ab119cff12.png" alt="Interface Overview">
+        </div>
+
+        <!-- Interface Detail Section -->
+        <div class="interface-section">
+            <h2>Interface Simple et Détaillée</h2>
+            <div class="interface-content">
+                <img src="https://assets.superhivemarket.com/cache/e85dbf1b06b56f5a89969ac971d36a85.png" alt="Interface Details">
+                <div class="interface-text">
+                    <p>Voici l'interface générale de l'addon, conçue pour être intuitive et efficace.</p>
+                    <p>Cet addon vous permet de contrôler tous les <span class="highlight">Geometry Modifiers</span> et les <span class="highlight">Shape Keys</span> dans une seule interface.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Materials Section -->
+        <div class="materials-section">
+            <h3>98 Matériaux Inclus</h3>
+            <div class="materials-intro">
+                <p style="margin: 0;">À part l'asset "color shader", <span class="highlight">98 matériaux</span> de haute qualité sont inclus dans l'addon elle-même, couvrant tous vos besoins de rendu.</p>
+            </div>
+        </div>
+
+        <!-- Materials Demo -->
+        <div class="media-block">
+            <img src="https://assets.superhivemarket.com/cache/e20901a5e2d5e85a6562686ad470c166.gif" alt="Materials Demo">
+        </div>
+
+        <!-- Materials Preview Carousel -->
+        <div class="materials-preview">
+            <button class="preview-btn prev" id="prevMaterialBtn"></button>
+            
+            <div class="preview-slide active">
+                <img src="https://assets.superhivemarket.com/cache/035a06f672035c935d81231563a3ebdc.png" alt="Material 1">
+            </div>
+            <div class="preview-slide">
+                <img src="https://assets.superhivemarket.com/cache/d0108af9f394b0a660fc93740c043bec.png" alt="Material 2">
+            </div>
+            <div class="preview-slide">
+                <img src="https://assets.superhivemarket.com/cache/d1e3d7618cbb0fe442cddb3137cf6c42.png" alt="Material 3">
+            </div>
+            <div class="preview-slide">
+                <img src="https://assets.superhivemarket.com/cache/f5072882c58f815420f6ff3dcc561368.png" alt="Material 4">
+            </div>
+            <div class="preview-slide">
+                <img src="https://assets.superhivemarket.com/cache/de0af3fc51a1012f4aacc3dd67acf84a.png" alt="Material 5">
+            </div>
+            <div class="preview-slide">
+                <img src="https://assets.superhivemarket.com/cache/a7524cc32cc496a22ab4c1ce2c4aaf71.png" alt="Material 6">
+            </div>
+            <div class="preview-slide">
+                <img src="https://assets.superhivemarket.com/cache/44486993fef26954b725f3b1025976a0.png" alt="Material 7">
+            </div>
+            
+            <button class="preview-btn next" id="nextMaterialBtn"></button>
+        </div>
+
+        <div class="preview-indicators" id="materialIndicators">
+            <div class="preview-indicator active" data-index="0"></div>
+            <div class="preview-indicator" data-index="1"></div>
+            <div class="preview-indicator" data-index="2"></div>
+            <div class="preview-indicator" data-index="3"></div>
+            <div class="preview-indicator" data-index="4"></div>
+            <div class="preview-indicator" data-index="5"></div>
+            <div class="preview-indicator" data-index="6"></div>
+        </div>
+
+        <div class="preview-counter">
+            <span id="currentMaterial">1</span> / <span>7</span>
+        </div>
+
+        <!-- Materials Interface -->
+        <div class="interface-section">
+            <h2>Interface des Matériaux</h2>
+            <div class="interface-content">
+                <img src="https://assets.superhivemarket.com/cache/ac6dce3036779e9939bafd19c2cce0af.png" alt="Materials Interface">
+                <div class="interface-text">
+                    <p>Parcourez et appliquez facilement vos matériaux grâce à une interface claire et organisée.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Scene Arrangement -->
+        <div class="features-section">
+            <h2>Fonctionnalités Principales</h2>
+            
+            <div class="feature-item">
+                <h3><span>🎬</span> Arrangement Automatique</h3>
+                <p>Elle vous aide à arranger votre scène en un simple clic seulement.</p>
+            </div>
+
+            <!-- Arrangement Demo -->
+            <div class="media-block">
+                <img src="https://assets.superhivemarket.com/cache/673c12daeb7ba047c5c6b9a87e780e11.gif" alt="Arrangement Demo">
+            </div>
+
+            <!-- Arrangement Interface -->
+            <div class="interface-section">
+                <h2>Interface de l'Arrangement</h2>
+                <div class="interface-content">
+                    <img src="https://assets.superhivemarket.com/cache/6bae65ffcd1f45d3e33d11114be1e99c.png" alt="Interface Arrangement">
+                    <div class="interface-text">
+                        <p>Une interface dédiée pour gérer l'arrangement de vos objets dans la scène.</p>
+                        <p>Organisez et positionnez vos éléments rapidement et efficacement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <h3><span>📷</span> Contrôle Caméra Simplifié</h3>
+                <p>Vous pouvez contrôler votre caméra simplement dans une seule interface sans devoir switcher partout.</p>
+            </div>
+
+            <div class="feature-item">
+                <h3><span>✨</span> Fonctionnalités Additionnelles</h3>
+                <p>Découvrez d'autres outils pratiques intégrés pour améliorer votre workflow dans Blender.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
