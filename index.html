@@ -443,27 +443,35 @@
             font-weight: 600;
             font-size: 1.1em;
         }
-        .materials-section {
-            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-            padding: 50px;
-            border-radius: 15px;
+        /* Materials Section - Feature Item Style */
+        .materials-feature-item {
+            background: linear-gradient(135deg, #1a1a1a 0%, #202020 100%);
+            padding: 35px;
             margin: 50px 0;
-            border: 1px solid rgba(74, 158, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            border-left: 4px solid #4a9eff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(74, 158, 255, 0.1);
         }
 
-        .materials-section h3 {
-            font-size: 2.2em;
+        .materials-feature-item:hover {
+            background: linear-gradient(135deg, #1f1f1f 0%, #252525 100%);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2);
+        }
+
+        .materials-feature-item h3 {
+            font-size: 1.6em;
             color: #ffffff;
-            margin-bottom: 25px;
-            font-weight: 700;
-            text-shadow: 0 2px 15px rgba(74, 158, 255, 0.4);
+            margin-bottom: 15px;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .materials-section h3::before {
+        .materials-feature-item h3::before {
             content: '';
             display: inline-block;
             width: 20px;
@@ -473,14 +481,9 @@
             box-shadow: 0 0 10px rgba(74, 158, 255, 0.6);
         }
 
-        .materials-intro {
-            color: #b8b8d1;
-            font-size: 1.15em;
-            margin-bottom: 35px;
-            padding: 20px;
-            background: rgba(74, 158, 255, 0.05);
-            border-left: 4px solid #4a9eff;
-            border-radius: 8px;
+        .materials-feature-item p {
+            color: #b0b0b0;
+            line-height: 1.6;
         }
 
         .materials-grid {
@@ -578,6 +581,16 @@
             gap: 12px;
         }
 
+        .feature-item h3::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #4a9eff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(74, 158, 255, 0.6);
+        }
+
         .feature-item p {
             color: #b0b0b0;
             line-height: 1.6;
@@ -629,9 +642,14 @@
             <p class="tagline" style="text-align: center;">Créez votre Scène Facilement Et Rapidement</p>
         </div>
 
-        <!-- Update Info -->
-        <div class="update-info">
-            <p style="margin: 0; text-align: left;">Cette Addon est une mise à jour du pack <a href="https://superhivemarket.com/products/scene-maker" target="_blank">Scene Maker</a> 😊</p>
+        <!-- Update Info with GIF -->
+        <div class="two-columns">
+            <div class="update-info" style="margin: 0;">
+                <p style="margin: 0; text-align: left;">Cette Addon est une mise à jour du pack <a href="https://superhivemarket.com/products/scene-maker" target="_blank">Scene Maker</a> 😊</p>
+            </div>
+            <div class="media-block" style="margin: 0;">
+                <img src="https://assets.superhivemarket.com/cache/ece8b619a3f572f2851df4589a00f60c.gif" alt="Update Demo">
+            </div>
         </div>
 
         <!-- Main Demo GIF -->
@@ -655,11 +673,9 @@
         </div>
 
         <!-- Materials Section -->
-        <div class="materials-section">
+        <div class="materials-feature-item">
             <h3>98 Matériaux Inclus</h3>
-            <div class="materials-intro">
-                <p style="margin: 0;">À part l'asset "color shader", <span class="highlight">98 matériaux</span> sont inclus dans l'addon elle-même.</p>
-            </div>
+            <p>À part l'asset "color shader", <span class="highlight">98 matériaux</span> sont inclus dans l'addon elle-même.</p>
         </div>
 
         <!-- Materials Demo -->
@@ -724,7 +740,7 @@
 
         <!-- Arrangement Section -->
         <div class="feature-item">
-            <h3><span>🎬</span> Arrangement Automatique</h3>
+            <h3>Arrangement Automatique</h3>
             <p>Elle vous aide aussi à arranger votre scène en un simple clic seulement.</p>
         </div>
 
@@ -793,7 +809,7 @@
                         <img src="https://assets.superhivemarket.com/cache/2447615accc984f3aa8cd70e7f760069.gif" alt="Face to Glass Demo">
                     </div>
                     <div class="feature-info">
-                        <h4>Face to Glass</h4>
+                        <h4>Face to Glass (Edit Mode)</h4>
                         <p>Permet de designer facilement des fenêtres ou changer les faces en fenêtres.</p>
                     </div>
                 </div>
@@ -821,9 +837,14 @@
                 </div>
 
                 <!-- Start Placing Objects Feature -->
-                <div class="feature-item" style="margin-top: 30px;">
-                    <h3>Start Placing Objects</h3>
-                    <p>Permet de placer des objets sur des surfaces approximatives en utilisant la gravité par animation.</p>
+                <div class="feature-layout" style="margin-top: 30px;">
+                    <div class="feature-media">
+                        <img src="https://assets.superhivemarket.com/cache/ece8b619a3f572f2851df4589a00f60c.gif" alt="Start Placing Objects Demo">
+                    </div>
+                    <div class="feature-info">
+                        <h4>Start Placing Objects</h4>
+                        <p>Permet de placer des objets sur des surfaces approximatives en utilisant la gravité par animation.</p>
+                    </div>
                 </div>
             </div>
         </div>
