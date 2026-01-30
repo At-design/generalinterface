@@ -194,6 +194,55 @@
             min-width: 300px;
         }
 
+        /* Alternating Layout for Features */
+        .feature-layout {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature-layout.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-layout .feature-media {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .feature-layout .feature-media img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-layout .feature-media img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(74, 158, 255, 0.25);
+        }
+
+        .feature-layout .feature-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .feature-layout .feature-info h4 {
+            font-size: 1.4em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-layout .feature-info p {
+            color: #b8b8d1;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
         /* Materials Preview Carousel */
         .materials-preview {
             position: relative;
@@ -669,10 +718,12 @@
         <!-- Panel Extra Section -->
         <div class="interface-section">
             <h2>Panel Extra</h2>
-            <div class="media-block">
+            <div class="interface-content">
                 <img src="https://assets.superhivemarket.com/cache/41fd2773febe0ec6fabe601b4b10759f.png" alt="Panel Extra">
+                <div class="interface-text">
+                    <p>Ce panneau contient <span class="highlight">5 options utiles</span> pour faciliter des tâches et gagner du temps dans la création de vos projets ⌚</p>
+                </div>
             </div>
-            <p style="margin-bottom: 30px;">Ce panneau contient <span class="highlight">5 options utiles</span> pour faciliter des tâches et gagner du temps dans la création de vos projets ⌚</p>
 
             <!-- Draw Glass Feature -->
             <div class="feature-item" style="margin-top: 30px;">
@@ -689,20 +740,24 @@
             </div>
 
             <!-- Solidify Feature -->
-            <div class="feature-item" style="margin-top: 30px;">
-                <h3><span>📦</span> Solidify</h3>
-                <p style="margin-bottom: 20px;">Permet de solidifier les meshes rapidement.</p>
-                <div class="media-block">
-                    <img src="https://assets.superhivemarket.com/cache/69bdfe381219ad441cdd76dca8f21a26.gif" alt="Solidify Demo" style="width: 50%;">
+            <div class="feature-layout">
+                <div class="feature-media">
+                    <img src="https://assets.superhivemarket.com/cache/69bdfe381219ad441cdd76dca8f21a26.gif" alt="Solidify Demo">
+                </div>
+                <div class="feature-info">
+                    <h4><span>📦</span> Solidify</h4>
+                    <p>Permet de solidifier les meshes rapidement et efficacement.</p>
                 </div>
             </div>
 
             <!-- Create Bounding Box Feature -->
-            <div class="feature-item" style="margin-top: 30px;">
-                <h3><span>📐</span> Create Bounding Box</h3>
-                <p style="margin-bottom: 20px;">Utilisable avec "Select 2+ Mesh objects" : permet de créer un boolean avec un modifier différent pour un contrôle plus simple.</p>
-                <div class="media-block">
-                    <img src="https://assets.superhivemarket.com/cache/a44cd17f1324c462f0b0631ba35f5174.gif" alt="Bounding Box Demo" style="width: 50%;">
+            <div class="feature-layout reverse">
+                <div class="feature-media">
+                    <img src="https://assets.superhivemarket.com/cache/a44cd17f1324c462f0b0631ba35f5174.gif" alt="Bounding Box Demo">
+                </div>
+                <div class="feature-info">
+                    <h4><span>📐</span> Create Bounding Box</h4>
+                    <p>Utilisable avec "Select 2+ Mesh objects" : permet de créer un boolean avec un modifier différent pour un contrôle plus simple.</p>
                 </div>
             </div>
 
