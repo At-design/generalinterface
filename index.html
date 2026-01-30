@@ -243,6 +243,16 @@
             line-height: 1.7;
         }
 
+        /* Panel Extra Group Box */
+        .panel-extra-group {
+            background: linear-gradient(135deg, #2a2a2a 0%, #333333 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
         /* Materials Preview Carousel */
         .materials-preview {
             position: relative;
@@ -591,8 +601,6 @@
 
         <!-- Interface General -->
         <div class="interface-section">
-            <h2>Interface Générale</h2>
-            <p>Voici l'interface générale de l'addon, simple et détaillée.</p>
             <div class="interface-content">
                 <img src="https://assets.superhivemarket.com/cache/e85dbf1b06b56f5a89969ac971d36a85.png" alt="Interface Details">
                 <div class="interface-text">
@@ -661,8 +669,6 @@
 
         <!-- Materials Interface -->
         <div class="interface-section">
-            <h2>Interface des Matériaux</h2>
-            <p>Voici l'interface du matériau</p>
             <div class="interface-content">
                 <img src="https://assets.superhivemarket.com/cache/ac6dce3036779e9939bafd19c2cce0af.png" alt="Materials Interface">
                 <div class="interface-text">
@@ -684,7 +690,6 @@
 
         <!-- Arrangement Interface -->
         <div class="interface-section">
-            <h2>Interface de l'Arrangement</h2>
             <div class="interface-content">
                 <img src="https://assets.superhivemarket.com/cache/6bae65ffcd1f45d3e33d11114be1e99c.png" alt="Interface Arrangement">
                 <div class="interface-text">
@@ -728,17 +733,6 @@
             <!-- Draw Glass Feature - Part 1 -->
             <div class="feature-layout">
                 <div class="feature-media">
-                    <img src="https://assets.superhivemarket.com/cache/2447615accc984f3aa8cd70e7f760069.gif" alt="Face to Glass Demo">
-                </div>
-                <div class="feature-info">
-                    <h4><span>🪟</span> Face to Glass</h4>
-                    <p>Permet de designer facilement des fenêtres ou changer les faces en fenêtres.</p>
-                </div>
-            </div>
-
-            <!-- Draw Glass Feature - Part 2 -->
-            <div class="feature-layout reverse" style="margin-top: 30px;">
-                <div class="feature-media">
                     <img src="https://assets.superhivemarket.com/cache/a6c19095b3b61dc1641c57c52da2cf21.gif" alt="Draw Glass Demo">
                 </div>
                 <div class="feature-info">
@@ -747,32 +741,45 @@
                 </div>
             </div>
 
-            <!-- Solidify Feature -->
-            <div class="feature-layout">
+            <!-- Draw Glass Feature - Part 2 -->
+            <div class="feature-layout reverse" style="margin-top: 30px;">
                 <div class="feature-media">
-                    <img src="https://assets.superhivemarket.com/cache/69bdfe381219ad441cdd76dca8f21a26.gif" alt="Solidify Demo">
+                    <img src="https://assets.superhivemarket.com/cache/2447615accc984f3aa8cd70e7f760069.gif" alt="Face to Glass Demo">
                 </div>
                 <div class="feature-info">
-                    <h4><span>📦</span> Solidify</h4>
-                    <p>Permet de solidifier les meshes rapidement et efficacement.</p>
+                    <h4><span>🪟</span> Face to Glass</h4>
+                    <p>Permet de designer facilement des fenêtres ou changer les faces en fenêtres.</p>
                 </div>
             </div>
 
-            <!-- Create Bounding Box Feature -->
-            <div class="feature-layout reverse">
-                <div class="feature-media">
-                    <img src="https://assets.superhivemarket.com/cache/a44cd17f1324c462f0b0631ba35f5174.gif" alt="Bounding Box Demo">
+            <div class="panel-extra-group">
+                <!-- Solidify Feature -->
+                <div class="feature-layout">
+                    <div class="feature-media">
+                        <img src="https://assets.superhivemarket.com/cache/69bdfe381219ad441cdd76dca8f21a26.gif" alt="Solidify Demo">
+                    </div>
+                    <div class="feature-info">
+                        <h4><span>📦</span> Solidify</h4>
+                        <p>Permet de solidifier les meshes rapidement et efficacement.</p>
+                    </div>
                 </div>
-                <div class="feature-info">
-                    <h4><span>📐</span> Create Bounding Box</h4>
-                    <p>Utilisable avec "Select 2+ Mesh objects" : permet de créer un boolean avec un modifier différent pour un contrôle plus simple.</p>
-                </div>
-            </div>
 
-            <!-- Start Placing Objects Feature -->
-            <div class="feature-item" style="margin-top: 30px;">
-                <h3><span>🚀</span> Start Placing Objects</h3>
-                <p>Permet de placer des objets sur des surfaces approximatives en utilisant la gravité par animation.</p>
+                <!-- Create Bounding Box Feature -->
+                <div class="feature-layout reverse">
+                    <div class="feature-media">
+                        <img src="https://assets.superhivemarket.com/cache/a44cd17f1324c462f0b0631ba35f5174.gif" alt="Bounding Box Demo">
+                    </div>
+                    <div class="feature-info">
+                        <h4><span>📐</span> Create Bounding Box</h4>
+                        <p>Utilisable avec "Select 2+ Mesh objects" : permet de créer un boolean avec un modifier différent pour un contrôle plus simple.</p>
+                    </div>
+                </div>
+
+                <!-- Start Placing Objects Feature -->
+                <div class="feature-item" style="margin-top: 30px;">
+                    <h3><span>🚀</span> Start Placing Objects</h3>
+                    <p>Permet de placer des objets sur des surfaces approximatives en utilisant la gravité par animation.</p>
+                </div>
             </div>
         </div>
 
