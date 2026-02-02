@@ -596,6 +596,90 @@
             line-height: 1.6;
         }
 
+        /* Comparison Section */
+        .comparison-section {
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .comparison-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .comparison-image {
+            flex: 1;
+            min-width: 250px;
+            max-width: 400px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .comparison-image:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(74, 158, 255, 0.3);
+            border-color: rgba(74, 158, 255, 0.5);
+        }
+        
+        .comparison-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .comparison-arrow {
+            font-size: 2.5em;
+            color: #4a9eff;
+            animation: pulse 1.5s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(74, 158, 255, 0.5);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translateX(0); opacity: 0.7; }
+            50% { transform: translateX(10px); opacity: 1; }
+        }
+        
+        .comparison-label {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 35px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border: 2px solid #4a9eff;
+            border-radius: 30px;
+            color: #4a9eff;
+            font-size: 1.3em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-label:hover {
+            background: linear-gradient(135deg, #4a9eff 0%, #6bb3ff 100%);
+            color: #1a1a1a;
+            box-shadow: 0 6px 30px rgba(74, 158, 255, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .comparison-label::before {
+            content: '✨';
+            margin-right: 10px;
+        }
+        
+        .comparison-label::after {
+            content: '✨';
+            margin-left: 10px;
+        }
+
         /* Section Divider */
         .divider {
             height: 2px;
@@ -665,6 +749,20 @@
         <!-- Interface Overview -->
         <div class="media-block">
             <img src="https://assets.superhivemarket.com/cache/e629816b964b322a7bf0b4ab119cff12.png" alt="Interface Overview" style="max-width: 100%;">
+        </div>
+
+        <!-- Comparison Section - Clean -->
+        <div class="comparison-section">
+            <div class="comparison-container">
+                <div class="comparison-image">
+                    <img src="https://assets.superhivemarket.com/cache/104b1b552bebbfb276ca7f9dcc5ccc6a.png" alt="Before">
+                </div>
+                <div class="comparison-arrow">→</div>
+                <div class="comparison-image">
+                    <img src="https://assets.superhivemarket.com/cache/077b9ac55c122f086806d0846b530e1b.png" alt="After">
+                </div>
+            </div>
+            <div class="comparison-label">Clean</div>
         </div>
 
         <!-- Materials Section -->
