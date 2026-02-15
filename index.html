@@ -248,9 +248,11 @@
             background: #ffffff;
             border-radius: 16px;
             padding: 40px;
-            margin-top: 30px;
+            margin: 30px auto 0;
             border: none;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            width: 100%;
         }
 
         /* All feature-layout: vertical (text on top, gif below) */
@@ -263,6 +265,7 @@
             padding: 0;
             border-radius: 0;
             border: none;
+            width: 100%;
         }
 
         .panel-extra-group .feature-layout:last-child {
@@ -270,6 +273,10 @@
         }
 
         /* Glass section - vertical with stacked gifs */
+        .panel-extra-group .glass-section {
+            width: 100%;
+        }
+
         .panel-extra-group .glass-section .feature-info {
             text-align: center;
             padding: 0 0 20px 0;
@@ -300,6 +307,7 @@
             flex-direction: column;
             gap: 20px;
             align-items: center;
+            width: 100%;
         }
 
         .panel-extra-group .glass-section .gif-container img {
@@ -309,6 +317,8 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             border: 2px solid rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
         }
 
         .panel-extra-group .glass-section .gif-container img:hover {
@@ -322,6 +332,7 @@
             text-align: center;
             padding: 0;
             margin-bottom: 15px;
+            width: 100%;
         }
 
         .panel-extra-group .feature-layout .feature-info h4 {
@@ -331,6 +342,7 @@
             margin-bottom: 10px;
             letter-spacing: 0.5px;
             display: block;
+            width: 100%;
         }
 
         .panel-extra-group .feature-layout .feature-info h4::before {
@@ -344,6 +356,7 @@
             font-weight: 400;
             max-width: 600px;
             margin: 0 auto;
+            display: block;
         }
 
         .panel-extra-group .feature-layout .feature-media {
