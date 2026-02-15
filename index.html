@@ -253,11 +253,13 @@
             box-shadow: none;
         }
 
+        /* Default feature-layout: horizontal (text next to gif) */
         .panel-extra-group .feature-layout {
             display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-bottom: 50px;
+            flex-direction: row;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 40px;
             background: transparent;
             padding: 0;
             border-radius: 0;
@@ -268,8 +270,10 @@
             margin-bottom: 0;
         }
 
-        /* Combined Glass Section Styles */
+        /* Combined Glass Section Styles - vertical (text on top, gifs on bottom) */
         .panel-extra-group .glass-section {
+            display: flex;
+            flex-direction: column;
             margin-bottom: 50px;
         }
 
@@ -320,12 +324,34 @@
             border-color: rgba(255, 255, 255, 0.25);
         }
 
-        .panel-extra-group .feature-info {
-            text-align: center;
-            padding: 10px 0;
+        /* Normal feature-layout styles (text next to gif) */
+        .panel-extra-group .feature-layout .feature-media {
+            flex: 1;
+            min-width: 300px;
         }
 
-        .panel-extra-group .feature-info h4 {
+        .panel-extra-group .feature-layout .feature-media img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .panel-extra-group .feature-layout .feature-media img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .panel-extra-group .feature-layout .feature-info {
+            flex: 1;
+            min-width: 280px;
+            text-align: left;
+            padding: 0;
+        }
+
+        .panel-extra-group .feature-layout .feature-info h4 {
             color: #ffffff;
             font-size: 1.5em;
             font-weight: 700;
@@ -333,32 +359,25 @@
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
             letter-spacing: 0.5px;
             display: block;
+            text-align: left;
         }
 
-        .panel-extra-group .feature-info h4::before {
+        .panel-extra-group .feature-layout .feature-info h4::before {
             display: none;
         }
 
-        .panel-extra-group .feature-info p {
+        .panel-extra-group .feature-layout .feature-info p {
             color: #e8e8e8;
             font-size: 1.1em;
             line-height: 1.6;
             font-weight: 400;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            text-align: left;
         }
 
-        .panel-extra-group .feature-media img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .panel-extra-group .feature-media img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 35px rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.2);
+        /* Reverse layout for alternating */
+        .panel-extra-group .feature-layout.reverse {
+            flex-direction: row-reverse;
         }
 
         .panel-extra-group .feature-item {
@@ -388,6 +407,17 @@
         }
 
         @media (max-width: 768px) {
+            .panel-extra-group .feature-layout,
+            .panel-extra-group .feature-layout.reverse {
+                flex-direction: column;
+            }
+            .panel-extra-group .feature-layout .feature-info {
+                text-align: center;
+            }
+            .panel-extra-group .feature-layout .feature-info h4,
+            .panel-extra-group .feature-layout .feature-info p {
+                text-align: center;
+            }
             .panel-extra-group .glass-section .gif-container {
                 flex-direction: column;
             }
@@ -988,7 +1018,7 @@
                 </div>
 
                 <!-- Start Placing Objects Feature -->
-                <div class="feature-layout" style="margin-top: 30px;">
+                <div class="feature-layout">
                     <div class="feature-media">
                         <img src="https://assets.superhivemarket.com/cache/ece8b619a3f572f2851df4589a00f60c.gif" alt="Start Placing Objects Demo">
                     </div>
