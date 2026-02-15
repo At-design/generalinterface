@@ -4,86 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scene Maker Addon</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-primary: #0d0d12;
-            --bg-secondary: #16161e;
-            --bg-tertiary: #1e1e28;
-            --bg-card: #22222e;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --accent-glow: rgba(99, 102, 241, 0.4);
-            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-highlight: rgba(99, 102, 241, 0.3);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 28px;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            padding: 40px 20px;
             line-height: 1.7;
-            font-size: 15px;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse 80% 50% at 20% 0%, rgba(99, 102, 241, 0.12), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 92, 246, 0.08), transparent);
-            pointer-events: none;
-            z-index: -1;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 24px;
         }
 
         /* Header */
         .header {
             text-align: center;
-            padding: 72px 40px 56px;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border-radius: var(--radius-xl);
-            margin-bottom: 48px;
-            border: 1px solid var(--border-color);
+            margin-bottom: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 15px;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
         }
@@ -91,414 +40,338 @@
         .header::before {
             content: '';
             position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            filter: blur(60px);
-            animation: pulse 6s ease-in-out infinite;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .header h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: 3.5em;
             font-weight: 800;
-            background: var(--accent-gradient);
+            background: linear-gradient(135deg, #4a9eff 0%, #6bb3ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 12px;
-            letter-spacing: -0.03em;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
             position: relative;
             z-index: 1;
+            text-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
         }
 
         .header .tagline {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            font-weight: 400;
+            font-size: 1.4em;
+            color: #b8b8d1;
+            font-weight: 300;
             position: relative;
             z-index: 1;
         }
 
         /* Update Badge */
         .update-info {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            padding: 20px 28px;
-            margin-bottom: 48px;
-            border-radius: var(--radius-md);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .update-info::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--accent-gradient);
-        }
-
-        .update-info p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border-left: 4px solid #4a9eff;
+            padding: 25px 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(74, 158, 255, 0.2);
         }
 
         .update-info a {
-            color: var(--accent-light);
+            color: #4a9eff;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         .update-info a:hover {
-            color: var(--accent);
+            color: #6bb3ff;
         }
 
-        /* Media */
+        /* Media Containers */
         .media-block {
-            margin-bottom: 48px;
+            margin: 50px 0;
             position: relative;
         }
 
-        .media-block img {
+        .media-block img,
+        .media-block .gif-container img {
             width: 100%;
             height: auto;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: var(--bg-secondary);
-            display: block;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(74, 158, 255, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .media-block img:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 24px 56px -12px var(--accent-glow);
-            border-color: var(--border-highlight);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(74, 158, 255, 0.25);
         }
 
-        /* Section */
-        .section {
-            margin-bottom: 48px;
+        /* Two Column Layout */
+        .two-columns {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 50px 0;
+            flex-wrap: wrap;
         }
 
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
+        .two-columns > * {
+            flex: 1;
+            min-width: 280px;
         }
 
-        /* Interface Section */
+        .two-columns img {
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(74, 158, 255, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .two-columns img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(74, 158, 255, 0.25);
+        }
+
+        /* Interface Preview */
         .interface-section {
-            background: var(--bg-secondary);
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
             padding: 40px;
-            border-radius: var(--radius-xl);
-            margin-bottom: 48px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
+            border-radius: 12px;
+            margin: 50px 0;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .interface-section::before {
-            content: '';
-            position: absolute;
-            top: -80px;
-            right: -80px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            filter: blur(40px);
-            opacity: 0.5;
+        .interface-section h2 {
+            font-size: 2em;
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(74, 158, 255, 0.3);
+        }
+
+        .interface-section p {
+            color: #b8b8d1;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.8;
         }
 
         .interface-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
             gap: 30px;
             align-items: center;
-            position: relative;
-            z-index: 1;
+            flex-wrap: wrap;
         }
 
         .interface-content img {
-            width: 100%;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-highlight);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 320px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .interface-content img:hover {
             transform: scale(1.03);
-            box-shadow: 0 20px 40px -10px var(--accent-glow);
+            box-shadow: 0 12px 35px rgba(74, 158, 255, 0.3);
         }
 
         .interface-text {
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            line-height: 1.65;
-            font-weight: 500;
+            flex: 1;
+            min-width: 300px;
         }
 
-        /* Highlight */
-        .highlight {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Alternating Layout for Features */
+        .feature-layout {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature-layout.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-layout .feature-media {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .feature-layout .feature-media img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-layout .feature-media img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(74, 158, 255, 0.25);
+        }
+
+        .feature-layout .feature-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .feature-layout .feature-info h4 {
+            font-size: 1.4em;
+            color: #ffffff;
+            margin-bottom: 15px;
             font-weight: 600;
         }
 
-        /* Comparison */
+        .feature-layout .feature-info p {
+            color: #b8b8d1;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        /* Panel Extra Group Box - White Version */
+        .panel-extra-group {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .panel-extra-group .feature-info h4 {
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .panel-extra-group .feature-info h4::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: #1a1a1a;
+            border-radius: 50%;
+        }
+
+        .panel-extra-group .feature-info p {
+            color: #2a2a2a;
+        }
+
+        .panel-extra-group .feature-item {
+            background: linear-gradient(135deg, #e8e8e8 0%, #f0f0f0 100%);
+            border-left: 4px solid #1a1a1a;
+        }
+
+        .panel-extra-group .feature-item h3 {
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .panel-extra-group .feature-item h3::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: #1a1a1a;
+            border-radius: 50%;
+        }
+
+        .panel-extra-group .feature-item p {
+            color: #2a2a2a;
+        }
+
+        /* Comparison Section */
         .comparison-section {
-            background: var(--bg-secondary);
-            padding: 48px;
-            border-radius: var(--radius-xl);
-            margin-bottom: 48px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
+            border-radius: 12px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .comparison-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 32px;
+            gap: 25px;
             flex-wrap: wrap;
-            margin: 32px 0;
+            margin: 25px 0;
         }
 
         .comparison-image {
-            flex: 1;
-            min-width: 250px;
-            max-width: 350px;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
+            max-width: 38%;
+            border-radius: 10px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(74, 158, 255, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .comparison-image:hover {
             transform: scale(1.03);
-            box-shadow: 0 20px 40px -10px var(--accent-glow);
+            box-shadow: 0 10px 35px rgba(74, 158, 255, 0.25);
         }
 
         .comparison-arrow {
-            font-size: 2rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            animation: bounce 1.5s ease-in-out infinite;
-            flex-shrink: 0;
+            font-size: 2em;
+            color: #4a9eff;
+            font-weight: bold;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateX(0); opacity: 1; }
-            50% { transform: translateX(8px); opacity: 0.7; }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateX(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(5px);
+            }
         }
 
         .comparison-text {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
+            color: #e0e0e0;
+            font-size: 1.15em;
             font-weight: 500;
             line-height: 1.6;
         }
 
         .comparison-text span {
-            display: block;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        /* Feature Item */
-        .feature-item {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            padding: 32px 36px;
-            margin-bottom: 24px;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--accent-gradient);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-item:hover {
-            transform: translateX(12px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--border-highlight);
-        }
-
-        .feature-item:hover::before {
-            transform: scaleY(1);
-        }
-
-        .feature-item h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .feature-item h3 .emoji {
-            font-size: 1.2rem;
-        }
-
-        .feature-item p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        /* Feature Layout */
-        .feature-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: flex-start;
-            margin-bottom: 40px;
-        }
-
-        .feature-layout.reverse {
-            direction: rtl;
-        }
-
-        .feature-layout.reverse > * {
-            direction: ltr;
-        }
-
-        .feature-layout img {
-            width: 100%;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-        }
-
-        .feature-layout img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px -10px var(--accent-glow);
-        }
-
-        .feature-layout h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-        }
-
-        .feature-layout p {
-            color: var(--text-secondary);
-            font-size: 0.98rem;
-            line-height: 1.7;
-        }
-
-        /* Panel Extra - Stack Layout */
-        .panel-extra-group .feature-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 36px;
-            padding-bottom: 36px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .panel-extra-group .feature-layout:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .panel-extra-group .feature-layout img {
-            width: 100%;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-        }
-
-        .panel-extra-group .feature-layout img:hover {
-            transform: scale(1.01);
-            box-shadow: 0 16px 32px -8px var(--accent-glow);
-        }
-
-        .panel-extra-group .feature-layout h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .panel-extra-group .feature-layout p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Panel Extra Group */
-        .panel-extra-group {
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-xl);
-            padding: 40px;
-            margin-top: 32px;
-            border: 1px solid var(--border-color);
-        }
-
-        /* Materials Carousel */
+            font-size: 1.3em;
+        }/* Materials Preview Carousel */
         .materials-preview {
             position: relative;
-            max-width: 900px;
-            margin: 0 auto 48px;
-            padding: 0 70px;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 60px;
         }
 
         .preview-container {
             position: relative;
             width: 100%;
-            aspect-ratio: 16/10;
-            background: var(--bg-secondary);
-            border-radius: var(--radius-xl);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-lg);
+            height: 450px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border-radius: 12px;
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
             overflow: hidden;
         }
 
@@ -508,18 +381,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 24px;
+            display: none !important;
+            animation: fadeIn 0.4s ease;
+            background: #1a1a1a;
         }
 
         .preview-slide.active {
-            opacity: 1;
-            visibility: visible;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
         }
 
         .preview-slide img {
@@ -528,24 +398,37 @@
             width: auto;
             height: auto;
             object-fit: contain;
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-md);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(74, 158, 255, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .preview-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            width: 45px;
+            height: 45px;
+            background: rgba(74, 158, 255, 0.9);
+            border: none;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             z-index: 10;
         }
 
@@ -553,196 +436,258 @@
             content: '';
             width: 10px;
             height: 10px;
-            border-top: 2px solid var(--text-primary);
-            border-right: 2px solid var(--text-primary);
-            transition: all 0.3s ease;
+            border-top: 3px solid white;
+            border-right: 3px solid white;
         }
 
         .preview-btn:hover {
-            background: var(--accent);
-            border-color: var(--accent);
+            background: rgba(74, 158, 255, 1);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 24px var(--accent-glow);
+            box-shadow: 0 6px 20px rgba(74, 158, 255, 0.6);
         }
 
-        .preview-btn.prev { left: 8px; }
-        .preview-btn.prev::before { transform: rotate(-135deg); margin-left: 3px; }
-        .preview-btn.next { right: 8px; }
-        .preview-btn.next::before { transform: rotate(45deg); margin-right: 3px; }
+        .preview-btn.prev {
+            left: 0;
+        }
+
+        .preview-btn.prev::before {
+            transform: rotate(-135deg);
+            margin-left: 3px;
+        }
+
+        .preview-btn.next {
+            right: 0;
+        }
+
+        .preview-btn.next::before {
+            transform: rotate(45deg);
+            margin-right: 3px;
+        }
 
         .preview-indicators {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 24px;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .preview-indicator {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: rgba(74, 158, 255, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .preview-indicator:hover {
-            background: var(--text-muted);
+            background: rgba(74, 158, 255, 0.6);
         }
 
         .preview-indicator.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            transform: scale(1.4);
-            box-shadow: 0 0 16px var(--accent-glow);
+            background: rgba(74, 158, 255, 1);
+            transform: scale(1.3);
         }
 
         .preview-counter {
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 16px;
-            font-weight: 500;
+            color: #b8b8d1;
+            font-size: 0.95em;
+            margin-top: 15px;
         }
 
         .preview-counter span {
-            color: var(--accent-light);
+            color: #4a9eff;
             font-weight: 600;
+            font-size: 1.1em;
+        }
+        /* Materials Section - Feature Item Style */
+        .materials-feature-item {
+            background: linear-gradient(135deg, #1a1a1a 0%, #202020 100%);
+            padding: 35px;
+            margin: 50px 0;
+            border-radius: 12px;
+            border-left: 4px solid #4a9eff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(74, 158, 255, 0.1);
         }
 
-        /* Video */
-        .video-section {
-            margin-bottom: 48px;
+        .materials-feature-item:hover {
+            background: linear-gradient(135deg, #1f1f1f 0%, #252525 100%);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2);
         }
 
-        .video-wrapper {
+        .materials-feature-item h3 {
+            font-size: 1.6em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .materials-feature-item h3::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #4a9eff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(74, 158, 255, 0.6);
+        }
+
+        .materials-feature-item p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .material-item {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1) 0%, rgba(74, 158, 255, 0.05) 100%);
+            padding: 20px 24px;
+            border-radius: 10px;
+            text-align: center;
+            color: #d0d0d0;
+            font-size: 1.05em;
+            font-weight: 500;
+            border: 2px solid rgba(74, 158, 255, 0.2);
+            transition: all 0.3s ease;
             position: relative;
-            width: 100%;
-            aspect-ratio: 16/9;
-            border-radius: var(--radius-xl);
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            background: var(--bg-secondary);
         }
 
-        .video-wrapper iframe {
+        .material-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            border: none;
+            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.2), transparent);
+            transition: left 0.5s ease;
         }
 
-        /* Materials Banner */
-        .materials-banner {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            padding: 36px 40px;
-            border-radius: var(--radius-lg);
-            margin-bottom: 48px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 24px;
+        .material-item:hover::before {
+            left: 100%;
         }
 
-        .materials-banner-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--accent-gradient);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+        .material-item:hover {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2) 0%, rgba(74, 158, 255, 0.1) 100%);
+            border-color: rgba(74, 158, 255, 0.4);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.3);
         }
 
-        .materials-banner-icon svg {
-            width: 28px;
-            height: 28px;
-            color: white;
-        }
-
-        .materials-banner h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
+        .material-count {
+            display: inline-block;
+            background: rgba(74, 158, 255, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-left: 8px;
             font-weight: 600;
-            margin-bottom: 4px;
         }
 
-        .materials-banner p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        /* Features List */
+        .features-section {
+            margin: 50px 0;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .interface-content,
-            .feature-layout {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
+        .features-section h2 {
+            font-size: 2em;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(74, 158, 255, 0.3);
+        }
 
-            .feature-layout.reverse {
-                direction: ltr;
-            }
+        .feature-item {
+            background: linear-gradient(135deg, #1a1a1a 0%, #202020 100%);
+            padding: 35px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #4a9eff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(74, 158, 255, 0.1);
+        }
+
+        .feature-item:hover {
+            background: linear-gradient(135deg, #1f1f1f 0%, #252525 100%);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2);
+        }
+
+        .feature-item h3 {
+            font-size: 1.6em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-item h3::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #4a9eff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(74, 158, 255, 0.6);
+        }
+
+        .feature-item p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Section Divider */
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4a9eff, transparent);
+            margin: 60px 0;
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+        }
+
+        /* Highlight Text */
+        .highlight {
+            color: #4a9eff;
+            font-weight: 500;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            .header {
-                padding: 48px 24px 40px;
-                margin-bottom: 32px;
-            }
-
             .header h1 {
-                font-size: 2rem;
+                font-size: 2.2em;
             }
 
-            .interface-section {
-                padding: 28px;
+            .interface-section,
+            .materials-section {
+                padding: 25px;
             }
 
-            .comparison-section {
-                padding: 32px 24px;
-            }
-
-            .comparison-container {
+            .interface-content {
                 flex-direction: column;
             }
 
-            .comparison-arrow {
-                transform: rotate(90deg);
+            .interface-content img {
+                max-width: 100%;
             }
 
-            .materials-preview {
-                padding: 0 50px;
-            }
-
-            .feature-item {
-                padding: 24px;
-            }
-
-            .panel-extra-group {
-                padding: 28px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .materials-preview {
-                padding: 0 36px;
-            }
-
-            .preview-btn {
-                width: 40px;
-                height: 40px;
-            }
-
-            .materials-banner {
+            .two-columns {
                 flex-direction: column;
-                text-align: center;
             }
         }
     </style>
@@ -750,52 +695,50 @@
 <body>
     <div class="container">
         <!-- Header -->
-        <header class="header">
-            <h1>SCENE MAKER ADDON</h1>
-            <p class="tagline">Create Your Scene Quickly And Easily</p>
-        </header>
-
-        <!-- Main Demo -->
-        <div class="media-block">
-            <img src="https://assets.superhivemarket.com/cache/a43a42f7ee0f2227b575b1c944439c73.gif" alt="Demo">
+        <div class="header">
+            <h1 style="text-align: center;">SCENE MAKER ADDON</h1>
+            <p class="tagline" style="text-align: center;">Create Your Scene Quickly And Easily</p>
         </div>
 
-        <!-- Interface Section -->
-        <section class="interface-section">
+        <!-- Update Info -->
+        <div class="update-info">
+            <p style="margin: 0; text-align: center;">This Addon is an update to the <a href="https://superhivemarket.com/products/scene-maker" target="_blank">Scene Maker</a> pack 😊</p>
+        </div>
+
+        <!-- Main Demo GIF -->
+        <div class="media-block">
+            <img src="https://assets.superhivemarket.com/cache/a43a42f7ee0f2227b575b1c944439c73.gif" alt="Scene Maker Demo" style="max-width: 100%;">
+        </div>
+
+        <!-- Interface General -->
+        <div class="interface-section">
             <div class="interface-content">
+                <img src="https://assets.superhivemarket.com/cache/e85dbf1b06b56f5a89969ac971d36a85.png" alt="Interface Details">
                 <div class="interface-text">
                     <p>This addon allows you to control all <span class="highlight">Geometry Node Modifiers</span> and <span class="highlight">Shape Keys</span> in a single interface.</p>
                 </div>
-                <img src="https://assets.superhivemarket.com/cache/e85dbf1b06b56f5a89969ac971d36a85.png" alt="Interface">
             </div>
-        </section>
+        </div>
 
         <!-- Interface Overview -->
         <div class="media-block">
-            <img src="https://assets.superhivemarket.com/cache/e629816b964b322a7bf0b4ab119cff12.png" alt="Interface Overview">
+            <img src="https://assets.superhivemarket.com/cache/e629816b964b322a7bf0b4ab119cff12.png" alt="Interface Overview" style="max-width: 100%;">
         </div>
 
-        <!-- Comparison -->
-        <section class="comparison-section">
+        <!-- Comparison Section -->
+        <div class="comparison-section">
             <div class="comparison-container">
                 <img src="https://assets.superhivemarket.com/cache/104b1b552bebbfb276ca7f9dcc5ccc6a.png" alt="Before" class="comparison-image">
                 <span class="comparison-arrow">→</span>
                 <img src="https://assets.superhivemarket.com/cache/077b9ac55c122f086806d0846b530e1b.png" alt="After" class="comparison-image">
             </div>
-            <p class="comparison-text"><span>You can easily customize the interface</span>Button size and their placement</p>
-        </section>
+            <p class="comparison-text"><span>You can easily customize the interface if you want 😎</span><br>(Button size and their placement)</p>
+        </div>
 
-        <!-- Materials Banner -->
-        <div class="materials-banner">
-            <div class="materials-banner-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                </svg>
-            </div>
-            <div>
-                <h3>98 Materials Included</h3>
-                <p>Professional materials ready to use in your projects</p>
-            </div>
+        <!-- Materials Section -->
+        <div class="materials-feature-item">
+            <h3>98 Materials Included</h3>
+            <p>Besides the "color shader" asset, <span class="highlight">98 materials</span> are included in the addon itself.</p>
         </div>
 
         <!-- Materials Demo -->
@@ -803,7 +746,7 @@
             <img src="https://assets.superhivemarket.com/cache/e20901a5e2d5e85a6562686ad470c166.gif" alt="Materials Demo">
         </div>
 
-        <!-- Materials Carousel -->
+        <!-- Materials Preview Carousel -->
         <div class="materials-preview">
             <button class="preview-btn prev" id="prevMaterialBtn"></button>
             
@@ -849,14 +792,14 @@
         </div>
 
         <!-- Materials Interface -->
-        <section class="interface-section">
+        <div class="interface-section">
             <div class="interface-content">
+                <img src="https://assets.superhivemarket.com/cache/ac6dce3036779e9939bafd19c2cce0af.png" alt="Materials Interface">
                 <div class="interface-text">
                     <p>Easily browse and apply your materials through a clear and organized interface.</p>
                 </div>
-                <img src="https://assets.superhivemarket.com/cache/ac6dce3036779e9939bafd19c2cce0af.png" alt="Materials Interface">
             </div>
-        </section>
+        </div>
 
         <!-- Arrangement Section -->
         <div class="feature-item">
@@ -870,92 +813,113 @@
         </div>
 
         <!-- Arrangement Interface -->
-        <section class="interface-section">
+        <div class="interface-section">
             <div class="interface-content">
+                <img src="https://assets.superhivemarket.com/cache/6bae65ffcd1f45d3e33d11114be1e99c.png" alt="Interface Arrangement">
                 <div class="interface-text">
                     <p>A dedicated interface to manage the arrangement of your objects in the scene.</p>
                     <p>Organize and position your elements quickly and efficiently.</p>
                 </div>
-                <img src="https://assets.superhivemarket.com/cache/6bae65ffcd1f45d3e33d11114be1e99c.png" alt="Interface Arrangement">
             </div>
-        </section>
+        </div>
 
         <!-- Camera Control -->
         <div class="feature-item">
-            <h3><span class="emoji">📷</span> Simplified Camera Control</h3>
+            <h3><span>📷</span> Simplified Camera Control</h3>
             <p>You can also control your camera easily in a single interface without having to switch around.</p>
         </div>
 
-        <!-- Video -->
-        <section class="video-section">
-            <div class="video-wrapper">
+        <!-- Video Section -->
+        <div style="text-align: center; margin: 40px 0;">
+            <div style="position: relative; display: inline-block; max-width: 800px; width: 100%;">
                 <iframe 
                     src="//www.youtube.com/embed/ht97ekPiD6w" 
+                    width="800" 
+                    height="450" 
+                    style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); border: 2px solid rgba(74, 158, 255, 0.2);"
+                    frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
                 </iframe>
             </div>
-        </section>
+        </div>
 
-        <!-- Panel Extra -->
-        <section class="section">
-            <h2 class="section-title">Panel Extra</h2>
-            
-            <section class="interface-section">
-                <div class="interface-content">
-                    <div class="interface-text">
-                        <p>This panel contains <span class="highlight">5 useful options</span> to make tasks easier and save time in your projects</p>
-                    </div>
-                    <img src="https://assets.superhivemarket.com/cache/41fd2773febe0ec6fabe601b4b10759f.png" alt="Panel Extra">
+        <!-- Panel Extra Section -->
+        <div class="interface-section">
+            <h2>Panel Extra</h2>
+            <div class="interface-content">
+                <img src="https://assets.superhivemarket.com/cache/41fd2773febe0ec6fabe601b4b10759f.png" alt="Panel Extra">
+                <div class="interface-text">
+                    <p>This panel contains <span class="highlight">5 useful options</span> to make tasks easier and save time in your projects ⌚</p>
                 </div>
+            </div>
 
-                <div class="panel-extra-group">
-                    <!-- Draw Glass -->
-                    <div class="feature-layout">
+            <div class="panel-extra-group">
+                <!-- Draw Glass Feature - Part 1 -->
+                <div class="feature-layout">
+                    <div class="feature-media">
+                        <img src="https://assets.superhivemarket.com/cache/a6c19095b3b61dc1641c57c52da2cf21.gif" alt="Draw Glass Demo">
+                    </div>
+                    <div class="feature-info">
                         <h4>Draw Glass</h4>
                         <p>Editable in edit mode for precise adjustments.</p>
-                        <img src="https://assets.superhivemarket.com/cache/a6c19095b3b61dc1641c57c52da2cf21.gif" alt="Draw Glass">
-                    </div>
-
-                    <!-- Face to Glass -->
-                    <div class="feature-layout">
-                        <h4>Face to Glass (Edit Mode)</h4>
-                        <p>Easily design windows or convert faces to windows.</p>
-                        <img src="https://assets.superhivemarket.com/cache/2447615accc984f3aa8cd70e7f760069.gif" alt="Face to Glass">
-                    </div>
-
-                    <!-- Solidify -->
-                    <div class="feature-layout">
-                        <h4>Solidify</h4>
-                        <p>Quickly and efficiently solidify your meshes.</p>
-                        <img src="https://assets.superhivemarket.com/cache/69bdfe381219ad441cdd76dca8f21a26.gif" alt="Solidify">
-                    </div>
-
-                    <!-- Bounding Box -->
-                    <div class="feature-layout">
-                        <h4>Create Bounding Box</h4>
-                        <p>Use with "Select 2+ Mesh objects" to create a <span class="highlight">Boolean Difference Modifier</span> for simpler control.</p>
-                        <img src="https://assets.superhivemarket.com/cache/a44cd17f1324c462f0b0631ba35f5174.gif" alt="Bounding Box">
-                    </div>
-
-                    <!-- Start Placing -->
-                    <div class="feature-layout">
-                        <h4>Start Placing Objects</h4>
-                        <p>Place objects on approximate surfaces using gravity through animation.</p>
-                        <img src="https://assets.superhivemarket.com/cache/ece8b619a3f572f2851df4589a00f60c.gif" alt="Start Placing">
                     </div>
                 </div>
-            </section>
-        </section>
 
-        <!-- Additional Assets -->
+                <!-- Draw Glass Feature - Part 2 -->
+                <div class="feature-layout reverse" style="margin-top: 30px;">
+                    <div class="feature-media">
+                        <img src="https://assets.superhivemarket.com/cache/2447615accc984f3aa8cd70e7f760069.gif" alt="Face to Glass Demo">
+                    </div>
+                    <div class="feature-info">
+                        <h4>Face to Glass (Edit Mode)</h4>
+                        <p>Easily design windows or convert faces to windows.</p>
+                    </div>
+                </div>
+
+                <!-- Solidify Feature -->
+                <div class="feature-layout">
+                    <div class="feature-media">
+                        <img src="https://assets.superhivemarket.com/cache/69bdfe381219ad441cdd76dca8f21a26.gif" alt="Solidify Demo">
+                    </div>
+                    <div class="feature-info">
+                        <h4>Solidify</h4>
+                        <p>Quickly and efficiently solidify your meshes.</p>
+                    </div>
+                </div>
+
+                <!-- Create Bounding Box Feature -->
+                <div class="feature-layout reverse">
+                    <div class="feature-media">
+                        <img src="https://assets.superhivemarket.com/cache/a44cd17f1324c462f0b0631ba35f5174.gif" alt="Bounding Box Demo">
+                    </div>
+                    <div class="feature-info">
+                        <h4>Create Bounding Box</h4>
+                        <p>Use with "Select 2+ Mesh objects" to create a <span class="highlight">Boolean Difference Modifier</span> for simpler control.</p>
+                    </div>
+                </div>
+
+                <!-- Start Placing Objects Feature -->
+                <div class="feature-layout" style="margin-top: 30px;">
+                    <div class="feature-media">
+                        <img src="https://assets.superhivemarket.com/cache/ece8b619a3f572f2851df4589a00f60c.gif" alt="Start Placing Objects Demo">
+                    </div>
+                    <div class="feature-info">
+                        <h4>Start Placing Objects</h4>
+                        <p>Place objects on approximate surfaces using gravity through animation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Asset Additionnel -->
         <div class="feature-item">
-            <h3>Additional Assets</h3>
+            <h3>Additional Assets ⬇️⬇️</h3>
             <p>Unlock an exclusive collection of <span class="highlight">additional assets</span> to enhance your Blender projects.</p>
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript for Materials Carousel -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.preview-slide');
@@ -968,6 +932,7 @@
             const totalSlides = slides.length;
 
             function updateCarousel() {
+                // Update slides
                 slides.forEach((slide, index) => {
                     slide.classList.remove('active');
                     if (index === currentIndex) {
@@ -975,6 +940,7 @@
                     }
                 });
 
+                // Update indicators
                 indicators.forEach((indicator, index) => {
                     indicator.classList.remove('active');
                     if (index === currentIndex) {
@@ -982,6 +948,7 @@
                     }
                 });
 
+                // Update counter
                 counter.textContent = currentIndex + 1;
             }
 
@@ -995,9 +962,11 @@
                 updateCarousel();
             }
 
+            // Event listeners for buttons
             nextBtn.addEventListener('click', nextSlide);
             prevBtn.addEventListener('click', prevSlide);
 
+            // Event listeners for indicators
             indicators.forEach((indicator, index) => {
                 indicator.addEventListener('click', function() {
                     currentIndex = index;
@@ -1005,6 +974,7 @@
                 });
             });
 
+            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
                     nextSlide();
