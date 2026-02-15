@@ -8,19 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --bg-primary: #0a0a0b;
-            --bg-secondary: #141416;
-            --bg-tertiary: #1c1c1f;
-            --bg-card: #1e1e22;
-            --accent-primary: #6366f1;
-            --accent-secondary: #818cf8;
+            --bg-primary: #0d0d12;
+            --bg-secondary: #16161e;
+            --bg-tertiary: #1e1e28;
+            --bg-card: #22222e;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
             --accent-glow: rgba(99, 102, 241, 0.4);
             --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
             --text-primary: #ffffff;
@@ -28,15 +22,19 @@
             --text-muted: #71717a;
             --border-color: rgba(255, 255, 255, 0.08);
             --border-highlight: rgba(99, 102, 241, 0.3);
-            --success: #22c55e;
-            --shadow-large: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            --shadow-medium: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
-            --shadow-small: 0 4px 15px -3px rgba(0, 0, 0, 0.3);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
             --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --section-spacing: 80px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -47,11 +45,11 @@
             font-family: 'Outfit', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 15px;
             overflow-x: hidden;
         }
 
-        /* Background Effects */
         body::before {
             content: '';
             position: fixed;
@@ -60,23 +58,26 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.12), transparent),
-                radial-gradient(ellipse 60% 40% at 100% 0%, rgba(139, 92, 246, 0.08), transparent),
-                radial-gradient(ellipse 50% 30% at 0% 100%, rgba(168, 85, 247, 0.06), transparent);
+                radial-gradient(ellipse 80% 50% at 20% 0%, rgba(99, 102, 241, 0.12), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 92, 246, 0.08), transparent);
             pointer-events: none;
             z-index: -1;
         }
 
         .container {
-            max-width: 1080px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 32px;
+            padding: 0 24px;
         }
 
         /* Header */
         .header {
             text-align: center;
-            padding: 100px 40px 80px;
+            padding: 72px 40px 56px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-radius: var(--radius-xl);
+            margin-bottom: 48px;
+            border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
         }
@@ -84,84 +85,50 @@
         .header::before {
             content: '';
             position: absolute;
-            top: -150px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            filter: blur(80px);
-            animation: pulse-glow 6s ease-in-out infinite;
+            filter: blur(60px);
+            animation: pulse 6s ease-in-out infinite;
         }
 
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
-            50% { opacity: 0.7; transform: translateX(-50%) scale(1.15); }
-        }
-
-        .header-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: var(--accent-secondary);
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 1;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-        }
-
-        .header-badge .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0.4; }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
         }
 
         .header h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: -0.04em;
+            margin-bottom: 12px;
+            letter-spacing: -0.03em;
             position: relative;
             z-index: 1;
-            line-height: 1.05;
         }
 
         .header .tagline {
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
             font-weight: 400;
             position: relative;
             z-index: 1;
-            max-width: 480px;
-            margin: 0 auto;
-            letter-spacing: 0.01em;
         }
 
         /* Update Badge */
         .update-info {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            padding: 24px 32px;
-            margin: 0 auto 64px;
-            border-radius: var(--radius-lg);
-            max-width: 560px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 20px 28px;
+            margin-bottom: 48px;
+            border-radius: var(--radius-md);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -179,89 +146,65 @@
         .update-info p {
             color: var(--text-secondary);
             font-size: 0.95rem;
-            text-align: center;
             margin: 0;
         }
 
         .update-info a {
-            color: var(--accent-secondary);
+            color: var(--accent-light);
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .update-info a:hover {
-            color: var(--accent-primary);
+            color: var(--accent);
         }
 
-        .update-info a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-gradient);
-            transition: width 0.3s ease;
-        }
-
-        .update-info a:hover::after {
-            width: 100%;
-        }
-
-        /* Section Headers */
-        .section-intro {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .section-intro h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.02em;
-        }
-
-        .section-intro p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        /* Media Containers */
+        /* Media */
         .media-block {
-            margin-bottom: var(--section-spacing);
+            margin-bottom: 48px;
             position: relative;
         }
 
-        .media-block img,
-        .media-block .gif-container img {
+        .media-block img {
             width: 100%;
             height: auto;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-color);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: var(--bg-secondary);
             display: block;
         }
 
         .media-block img:hover {
             transform: translateY(-6px);
-            box-shadow: 0 35px 60px -15px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 24px 56px -12px var(--accent-glow);
             border-color: var(--border-highlight);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
         }
 
         /* Interface Section */
         .interface-section {
             background: var(--bg-secondary);
-            padding: 48px;
+            padding: 40px;
             border-radius: var(--radius-xl);
-            margin-bottom: var(--section-spacing);
+            margin-bottom: 48px;
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
         }
@@ -269,80 +212,44 @@
         .interface-section::before {
             content: '';
             position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
+            top: -80px;
+            right: -80px;
+            width: 300px;
+            height: 300px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            filter: blur(60px);
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        .interface-section h2 {
-            font-size: 1.75rem;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-            font-weight: 700;
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.02em;
-        }
-
-        .interface-section p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.75;
+            filter: blur(40px);
+            opacity: 0.5;
         }
 
         .interface-content {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 48px;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
             align-items: center;
             position: relative;
             z-index: 1;
         }
 
-        .interface-content.reversed {
-            grid-template-columns: 0.9fr 1.1fr;
-        }
-
-        .interface-content.reversed .interface-media {
-            order: 2;
-        }
-
-        .interface-content.reversed .interface-text {
-            order: 1;
-        }
-
-        .interface-media {
-            position: relative;
-        }
-
-        .interface-media img {
+        .interface-content img {
             width: 100%;
             border-radius: var(--radius-md);
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow-md);
             border: 1px solid var(--border-highlight);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .interface-media img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 25px 50px -10px rgba(99, 102, 241, 0.25);
+        .interface-content img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px -10px var(--accent-glow);
         }
 
         .interface-text {
-            padding: 16px 0;
-        }
-
-        .interface-text p {
             color: var(--text-secondary);
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             line-height: 1.8;
         }
 
-        /* Highlight Text */
+        /* Highlight */
         .highlight {
             background: var(--accent-gradient);
             -webkit-background-clip: text;
@@ -351,13 +258,80 @@
             font-weight: 600;
         }
 
-        /* Feature Item Style */
+        /* Comparison */
+        .comparison-section {
+            background: var(--bg-secondary);
+            padding: 48px;
+            border-radius: var(--radius-xl);
+            margin-bottom: 48px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+
+        .comparison-image {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        .comparison-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px -10px var(--accent-glow);
+        }
+
+        .comparison-arrow {
+            font-size: 2rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            animation: bounce 1.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(8px); opacity: 0.7; }
+        }
+
+        .comparison-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .comparison-text span {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        /* Feature Item */
         .feature-item {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.03) 100%);
-            padding: 36px 40px;
-            margin-bottom: var(--section-spacing);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            padding: 32px 36px;
+            margin-bottom: 24px;
             border-radius: var(--radius-lg);
-            border: 1px solid rgba(99, 102, 241, 0.12);
+            border: 1px solid var(--border-color);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -372,14 +346,13 @@
             width: 3px;
             background: var(--accent-gradient);
             transform: scaleY(0);
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
 
         .feature-item:hover {
             transform: translateX(12px);
-            box-shadow: var(--shadow-medium);
-            border-color: rgba(99, 102, 241, 0.2);
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-highlight);
         }
 
         .feature-item:hover::before {
@@ -387,195 +360,138 @@
         }
 
         .feature-item h3 {
-            font-size: 1.65rem;
-            color: var(--text-primary);
-            margin-bottom: 14px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.45rem;
             font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 14px;
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.01em;
+            gap: 12px;
         }
 
         .feature-item h3 .emoji {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .feature-item p {
             color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.75;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
-        /* Feature Layout - Alternating */
-        .feature-list {
-            margin-bottom: var(--section-spacing);
-        }
-
-        .feature-row {
+        /* Feature Layout */
+        .feature-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
-            margin-bottom: 48px;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 40px;
         }
 
-        .feature-row.reverse {
-            grid-template-columns: 1fr 1fr;
+        .feature-layout.reverse {
+            direction: rtl;
         }
 
-        .feature-row.reverse .feature-row-media {
-            order: 2;
+        .feature-layout.reverse > * {
+            direction: ltr;
         }
 
-        .feature-row.reverse .feature-row-content {
-            order: 1;
-        }
-
-        .feature-row-media img {
+        .feature-layout img {
             width: 100%;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow-md);
             border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
         }
 
-        .feature-row-media img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 30px 50px -12px rgba(99, 102, 241, 0.2);
-            border-color: var(--border-highlight);
+        .feature-layout img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px -10px var(--accent-glow);
         }
 
-        .feature-row-content {
-            padding: 24px 0;
-        }
-
-        .feature-row-content h4 {
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            margin-bottom: 14px;
-            font-weight: 600;
+        .feature-layout h4 {
             font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
         }
 
-        .feature-row-content p {
+        .feature-layout p {
             color: var(--text-secondary);
-            font-size: 1.02rem;
-            line-height: 1.75;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        /* Panel Extra - Stack Layout */
+        .panel-extra-group .feature-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 36px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel-extra-group .feature-layout:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .panel-extra-group .feature-layout img {
+            width: 100%;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        .panel-extra-group .feature-layout img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 16px 32px -8px var(--accent-glow);
+        }
+
+        .panel-extra-group .feature-layout h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .panel-extra-group .feature-layout p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         /* Panel Extra Group */
         .panel-extra-group {
             background: var(--bg-tertiary);
             border-radius: var(--radius-xl);
-            padding: 48px;
-            margin-top: 40px;
+            padding: 40px;
+            margin-top: 32px;
             border: 1px solid var(--border-color);
         }
 
-        /* Comparison Section */
-        .comparison-section {
-            background: var(--bg-secondary);
-            border-radius: var(--radius-xl);
-            padding: 56px 48px;
-            margin-bottom: var(--section-spacing);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-medium);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .comparison-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            filter: blur(80px);
-            opacity: 0.25;
-            pointer-events: none;
-        }
-
-        .comparison-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin: 40px 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .comparison-image {
-            flex: 1;
-            min-width: 300px;
-            max-width: 420px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-medium);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .comparison-image:hover {
-            transform: scale(1.04);
-            box-shadow: 0 30px 60px -15px rgba(99, 102, 241, 0.25);
-        }
-
-        .comparison-arrow {
-            font-size: 2.5rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            animation: arrow-pulse 2s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-
-        @keyframes arrow-pulse {
-            0%, 100% { transform: translateX(0); opacity: 1; }
-            50% { transform: translateX(10px); opacity: 0.6; }
-        }
-
-        .comparison-text {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            font-weight: 500;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        .comparison-text span {
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        /* Materials Preview Carousel */
+        /* Materials Carousel */
         .materials-preview {
             position: relative;
-            max-width: 960px;
-            margin: 0 auto 56px;
-            padding: 0 80px;
+            max-width: 900px;
+            margin: 0 auto 48px;
+            padding: 0 70px;
         }
 
         .preview-container {
             position: relative;
             width: 100%;
-            aspect-ratio: 16/9;
+            aspect-ratio: 16/10;
             background: var(--bg-secondary);
             border-radius: var(--radius-xl);
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
         }
 
@@ -590,9 +506,8 @@
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            background: var(--bg-secondary);
-            padding: 32px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 24px;
         }
 
         .preview-slide.active {
@@ -606,17 +521,17 @@
             width: auto;
             height: auto;
             object-fit: contain;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-medium);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-md);
         }
 
         .preview-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 52px;
-            height: 52px;
-            background: rgba(30, 30, 34, 0.9);
+            width: 48px;
+            height: 48px;
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 50%;
             cursor: pointer;
@@ -625,55 +540,41 @@
             justify-content: center;
             transition: all 0.3s ease;
             z-index: 10;
-            backdrop-filter: blur(10px);
         }
 
         .preview-btn::before {
             content: '';
-            width: 12px;
-            height: 12px;
-            border-top: 2.5px solid var(--text-primary);
-            border-right: 2.5px solid var(--text-primary);
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid var(--text-primary);
+            border-right: 2px solid var(--text-primary);
             transition: all 0.3s ease;
         }
 
         .preview-btn:hover {
-            background: var(--accent-primary);
-            border-color: var(--accent-primary);
+            background: var(--accent);
+            border-color: var(--accent);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 24px var(--accent-glow);
         }
 
-        .preview-btn.prev {
-            left: 12px;
-        }
-
-        .preview-btn.prev::before {
-            transform: rotate(-135deg);
-            margin-left: 4px;
-        }
-
-        .preview-btn.next {
-            right: 12px;
-        }
-
-        .preview-btn.next::before {
-            transform: rotate(45deg);
-            margin-right: 4px;
-        }
+        .preview-btn.prev { left: 8px; }
+        .preview-btn.prev::before { transform: rotate(-135deg); margin-left: 3px; }
+        .preview-btn.next { right: 8px; }
+        .preview-btn.next::before { transform: rotate(45deg); margin-right: 3px; }
 
         .preview-indicators {
             display: flex;
             justify-content: center;
-            gap: 14px;
-            margin-top: 28px;
+            gap: 12px;
+            margin-top: 24px;
         }
 
         .preview-indicator {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: var(--bg-tertiary);
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             cursor: pointer;
             transition: all 0.3s ease;
@@ -681,181 +582,128 @@
 
         .preview-indicator:hover {
             background: var(--text-muted);
-            transform: scale(1.1);
         }
 
         .preview-indicator.active {
-            background: var(--accent-primary);
-            border-color: var(--accent-primary);
+            background: var(--accent);
+            border-color: var(--accent);
             transform: scale(1.4);
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 16px var(--accent-glow);
         }
 
         .preview-counter {
             text-align: center;
             color: var(--text-muted);
             font-size: 0.9rem;
-            margin-top: 18px;
+            margin-top: 16px;
             font-weight: 500;
-            letter-spacing: 0.02em;
         }
 
         .preview-counter span {
-            color: var(--accent-secondary);
+            color: var(--accent-light);
             font-weight: 600;
-            font-size: 1.05rem;
         }
 
-        /* Video Section */
+        /* Video */
         .video-section {
-            margin-bottom: var(--section-spacing);
-            position: relative;
+            margin-bottom: 48px;
         }
 
         .video-wrapper {
             position: relative;
             width: 100%;
-            max-width: 960px;
-            margin: 0 auto;
+            aspect-ratio: 16/9;
             border-radius: var(--radius-xl);
             overflow: hidden;
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-color);
-            aspect-ratio: 16/9;
             background: var(--bg-secondary);
         }
 
         .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        /* Section Title */
-        .section-title {
-            text-align: center;
-            margin-bottom: 56px;
+        /* Materials Banner */
+        .materials-banner {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            padding: 36px 40px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 48px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 24px;
         }
 
-        .section-title h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.03em;
-            margin-bottom: 16px;
+        .materials-banner-icon {
+            width: 56px;
+            height: 56px;
             background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .section-title p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 520px;
-            margin: 0 auto;
-            line-height: 1.7;
+        .materials-banner-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
         }
 
-        /* Final CTA */
-        .final-cta {
-            text-align: center;
-            padding: 80px 40px;
-            position: relative;
-        }
-
-        .final-cta h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 12px;
+        .materials-banner h3 {
             font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 4px;
         }
 
-        .final-cta p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
+        .materials-banner p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            :root {
-                --section-spacing: 64px;
-            }
-
-            .container {
-                padding: 0 24px;
-            }
-
-            .header {
-                padding: 80px 24px 60px;
-            }
-
-            .interface-content {
+        @media (max-width: 900px) {
+            .interface-content,
+            .feature-layout {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 24px;
             }
 
-            .interface-content.reversed .interface-media {
-                order: 1;
-            }
-
-            .interface-content.reversed .interface-text {
-                order: 2;
-            }
-
-            .feature-row {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .feature-row.reverse .feature-row-media {
-                order: 1;
-            }
-
-            .feature-row.reverse .feature-row-content {
-                order: 2;
+            .feature-layout.reverse {
+                direction: ltr;
             }
         }
 
         @media (max-width: 768px) {
-            :root {
-                --section-spacing: 56px;
+            .container {
+                padding: 0 16px;
             }
 
             .header {
-                padding: 64px 20px 48px;
+                padding: 48px 24px 40px;
+                margin-bottom: 32px;
             }
 
             .header h1 {
-                font-size: 2.25rem;
-            }
-
-            .header .tagline {
-                font-size: 1.1rem;
+                font-size: 2rem;
             }
 
             .interface-section {
-                padding: 32px 24px;
-            }
-
-            .feature-item {
-                padding: 28px 24px;
-            }
-
-            .feature-item h3 {
-                font-size: 1.4rem;
+                padding: 28px;
             }
 
             .comparison-section {
-                padding: 40px 24px;
+                padding: 32px 24px;
             }
 
             .comparison-container {
                 flex-direction: column;
-                gap: 24px;
             }
 
             .comparison-arrow {
@@ -866,64 +714,28 @@
                 padding: 0 50px;
             }
 
+            .feature-item {
+                padding: 24px;
+            }
+
             .panel-extra-group {
-                padding: 32px 24px;
+                padding: 28px;
             }
         }
 
         @media (max-width: 480px) {
-            :root {
-                --section-spacing: 48px;
-            }
-
-            .container {
-                padding: 0 16px;
-            }
-
-            .header {
-                padding: 56px 16px 40px;
-            }
-
-            .header h1 {
-                font-size: 1.875rem;
-            }
-
-            .header .tagline {
-                font-size: 1rem;
-            }
-
-            .header-badge {
-                font-size: 0.8rem;
-                padding: 8px 16px;
-            }
-
-            .interface-section {
-                padding: 24px 16px;
-            }
-
-            .feature-item {
-                padding: 24px 16px;
-            }
-
-            .feature-item h3 {
-                font-size: 1.25rem;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
             .materials-preview {
                 padding: 0 36px;
             }
 
             .preview-btn {
-                width: 44px;
-                height: 44px;
+                width: 40px;
+                height: 40px;
             }
 
-            .preview-btn::before {
-                width: 10px;
-                height: 10px;
+            .materials-banner {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
@@ -932,10 +744,6 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <div class="header-badge">
-                <span class="dot"></span>
-                Updated Version Available
-            </div>
             <h1>SCENE MAKER ADDON</h1>
             <p class="tagline">Create Your Scene Quickly And Easily</p>
         </header>
@@ -945,17 +753,15 @@
             <p>This Addon is an update to the <a href="https://superhivemarket.com/products/scene-maker" target="_blank">Scene Maker</a> pack</p>
         </div>
 
-        <!-- Main Demo GIF -->
+        <!-- Main Demo -->
         <div class="media-block">
-            <img src="https://assets.superhivemarket.com/cache/a43a42f7ee0f2227b575b1c944439c73.gif" alt="Scene Maker Demo">
+            <img src="https://assets.superhivemarket.com/cache/a43a42f7ee0f2227b575b1c944439c73.gif" alt="Demo">
         </div>
 
-        <!-- Interface General -->
+        <!-- Interface Section -->
         <section class="interface-section">
             <div class="interface-content">
-                <div class="interface-media">
-                    <img src="https://assets.superhivemarket.com/cache/e85dbf1b06b56f5a89969ac971d36a85.png" alt="Interface Details">
-                </div>
+                <img src="https://assets.superhivemarket.com/cache/e85dbf1b06b56f5a89969ac971d36a85.png" alt="Interface">
                 <div class="interface-text">
                     <p>This addon allows you to control all <span class="highlight">Geometry Node Modifiers</span> and <span class="highlight">Shape Keys</span> in a single interface.</p>
                 </div>
@@ -967,7 +773,7 @@
             <img src="https://assets.superhivemarket.com/cache/e629816b964b322a7bf0b4ab119cff12.png" alt="Interface Overview">
         </div>
 
-        <!-- Comparison Section -->
+        <!-- Comparison -->
         <section class="comparison-section">
             <div class="comparison-container">
                 <img src="https://assets.superhivemarket.com/cache/104b1b552bebbfb276ca7f9dcc5ccc6a.png" alt="Before" class="comparison-image">
@@ -977,10 +783,17 @@
             <p class="comparison-text"><span>You can easily customize the interface</span>Button size and their placement</p>
         </section>
 
-        <!-- Materials Section -->
-        <div class="feature-item">
-            <h3>98 Materials Included</h3>
-            <p>Besides the "color shader" asset, <span class="highlight">98 materials</span> are included in the addon itself.</p>
+        <!-- Materials Banner -->
+        <div class="materials-banner">
+            <div class="materials-banner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+            </div>
+            <div>
+                <h3>98 Materials Included</h3>
+                <p>Professional materials ready to use in your projects</p>
+            </div>
         </div>
 
         <!-- Materials Demo -->
@@ -988,7 +801,7 @@
             <img src="https://assets.superhivemarket.com/cache/e20901a5e2d5e85a6562686ad470c166.gif" alt="Materials Demo">
         </div>
 
-        <!-- Materials Preview Carousel -->
+        <!-- Materials Carousel -->
         <div class="materials-preview">
             <button class="preview-btn prev" id="prevMaterialBtn"></button>
             
@@ -1036,9 +849,7 @@
         <!-- Materials Interface -->
         <section class="interface-section">
             <div class="interface-content">
-                <div class="interface-media">
-                    <img src="https://assets.superhivemarket.com/cache/ac6dce3036779e9939bafd19c2cce0af.png" alt="Materials Interface">
-                </div>
+                <img src="https://assets.superhivemarket.com/cache/ac6dce3036779e9939bafd19c2cce0af.png" alt="Materials Interface">
                 <div class="interface-text">
                     <p>Easily browse and apply your materials through a clear and organized interface.</p>
                 </div>
@@ -1059,12 +870,10 @@
         <!-- Arrangement Interface -->
         <section class="interface-section">
             <div class="interface-content">
-                <div class="interface-media">
-                    <img src="https://assets.superhivemarket.com/cache/6bae65ffcd1f45d3e33d11114be1e99c.png" alt="Interface Arrangement">
-                </div>
+                <img src="https://assets.superhivemarket.com/cache/6bae65ffcd1f45d3e33d11114be1e99c.png" alt="Interface Arrangement">
                 <div class="interface-text">
                     <p>A dedicated interface to manage the arrangement of your objects in the scene.</p>
-                    <p style="margin-top: 12px;">Organize and position your elements quickly and efficiently.</p>
+                    <p>Organize and position your elements quickly and efficiently.</p>
                 </div>
             </div>
         </section>
@@ -1075,7 +884,7 @@
             <p>You can also control your camera easily in a single interface without having to switch around.</p>
         </div>
 
-        <!-- Video Section -->
+        <!-- Video -->
         <section class="video-section">
             <div class="video-wrapper">
                 <iframe 
@@ -1086,88 +895,65 @@
             </div>
         </section>
 
-        <!-- Panel Extra Section -->
-        <section class="section-title">
-            <h2>Panel Extra</h2>
-            <p>This panel contains 5 useful options to make tasks easier and save time in your projects</p>
-        </section>
-
-        <section class="interface-section">
-            <div class="interface-content">
-                <div class="interface-media">
+        <!-- Panel Extra -->
+        <section class="section">
+            <h2 class="section-title">Panel Extra</h2>
+            
+            <section class="interface-section">
+                <div class="interface-content">
                     <img src="https://assets.superhivemarket.com/cache/41fd2773febe0ec6fabe601b4b10759f.png" alt="Panel Extra">
-                </div>
-                <div class="interface-text">
-                    <p>This panel contains <span class="highlight">5 useful options</span> to make tasks easier and save time in your projects</p>
-                </div>
-            </div>
-
-            <div class="panel-extra-group">
-                <!-- Feature 1 -->
-                <div class="feature-row">
-                    <div class="feature-row-media">
-                        <img src="https://assets.superhivemarket.com/cache/a6c19095b3b61dc1641c57c52da2cf21.gif" alt="Draw Glass Demo">
+                    <div class="interface-text">
+                        <p>This panel contains <span class="highlight">5 useful options</span> to make tasks easier and save time in your projects</p>
                     </div>
-                    <div class="feature-row-content">
+                </div>
+
+                <div class="panel-extra-group">
+                    <!-- Draw Glass -->
+                    <div class="feature-layout">
                         <h4>Draw Glass</h4>
                         <p>Editable in edit mode for precise adjustments.</p>
+                        <img src="https://assets.superhivemarket.com/cache/a6c19095b3b61dc1641c57c52da2cf21.gif" alt="Draw Glass">
                     </div>
-                </div>
 
-                <!-- Feature 2 -->
-                <div class="feature-row reverse">
-                    <div class="feature-row-media">
-                        <img src="https://assets.superhivemarket.com/cache/2447615accc984f3aa8cd70e7f760069.gif" alt="Face to Glass Demo">
-                    </div>
-                    <div class="feature-row-content">
+                    <!-- Face to Glass -->
+                    <div class="feature-layout">
                         <h4>Face to Glass (Edit Mode)</h4>
                         <p>Easily design windows or convert faces to windows.</p>
+                        <img src="https://assets.superhivemarket.com/cache/2447615accc984f3aa8cd70e7f760069.gif" alt="Face to Glass">
                     </div>
-                </div>
 
-                <!-- Feature 3 -->
-                <div class="feature-row">
-                    <div class="feature-row-media">
-                        <img src="https://assets.superhivemarket.com/cache/69bdfe381219ad441cdd76dca8f21a26.gif" alt="Solidify Demo">
-                    </div>
-                    <div class="feature-row-content">
+                    <!-- Solidify -->
+                    <div class="feature-layout">
                         <h4>Solidify</h4>
                         <p>Quickly and efficiently solidify your meshes.</p>
+                        <img src="https://assets.superhivemarket.com/cache/69bdfe381219ad441cdd76dca8f21a26.gif" alt="Solidify">
                     </div>
-                </div>
 
-                <!-- Feature 4 -->
-                <div class="feature-row reverse">
-                    <div class="feature-row-media">
-                        <img src="https://assets.superhivemarket.com/cache/a44cd17f1324c462f0b0631ba35f5174.gif" alt="Bounding Box Demo">
-                    </div>
-                    <div class="feature-row-content">
+                    <!-- Bounding Box -->
+                    <div class="feature-layout">
                         <h4>Create Bounding Box</h4>
                         <p>Use with "Select 2+ Mesh objects" to create a <span class="highlight">Boolean Difference Modifier</span> for simpler control.</p>
+                        <img src="https://assets.superhivemarket.com/cache/a44cd17f1324c462f0b0631ba35f5174.gif" alt="Bounding Box">
                     </div>
-                </div>
 
-                <!-- Feature 5 -->
-                <div class="feature-row">
-                    <div class="feature-row-media">
-                        <img src="https://assets.superhivemarket.com/cache/ece8b619a3f572f2851df4589a00f60c.gif" alt="Start Placing Objects Demo">
-                    </div>
-                    <div class="feature-row-content">
+                    <!-- Start Placing -->
+                    <div class="feature-layout">
                         <h4>Start Placing Objects</h4>
                         <p>Place objects on approximate surfaces using gravity through animation.</p>
+                        <img src="https://assets.superhivemarket.com/cache/ece8b619a3f572f2851df4589a00f60c.gif" alt="Start Placing">
                     </div>
                 </div>
-            </div>
+            </section>
         </section>
 
         <!-- Additional Assets -->
-        <div class="feature-item" style="margin-bottom: 0;">
+        <div class="feature-item">
             <h3>Additional Assets</h3>
             <p>Unlock an exclusive collection of <span class="highlight">additional assets</span> to enhance your Blender projects.</p>
         </div>
     </div>
 
-    <!-- JavaScript for Materials Carousel -->
+    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.preview-slide');
