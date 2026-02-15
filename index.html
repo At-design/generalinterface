@@ -37,6 +37,12 @@
             box-sizing: border-box;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -223,8 +229,8 @@
 
         .interface-content {
             display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             align-items: center;
             position: relative;
             z-index: 1;
@@ -245,7 +251,7 @@
 
         .interface-text {
             color: var(--text-primary);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             line-height: 1.65;
             font-weight: 500;
         }
