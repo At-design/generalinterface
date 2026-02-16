@@ -28,7 +28,7 @@
         /* Header - Black & White */
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             padding: 60px 40px;
             background: #111;
             border-radius: 4px;
@@ -66,6 +66,80 @@
             text-transform: uppercase;
             position: relative;
             z-index: 1;
+        }
+
+        /* Asset Update Section */
+        .asset-update-section {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .asset-update-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #fff;
+        }
+
+        .asset-update-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .asset-update-text {
+            font-size: 0.95em;
+            color: #fff;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Blinking Green Dot */
+        .blinking-dot {
+            width: 10px;
+            height: 10px;
+            background: #00ff41;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8);
+                box-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+            }
+        }
+
+        .asset-update-video {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .asset-update-video iframe {
+            width: 100%;
+            height: 450px;
+            border-radius: 2px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            border: 1px solid #333;
         }
 
         /* Media Containers */
@@ -849,6 +923,15 @@
                 font-size: 0.9em;
             }
 
+            .asset-update-video iframe {
+                height: 250px;
+            }
+
+            .asset-update-text {
+                font-size: 0.8em;
+                letter-spacing: 2px;
+            }
+
             .interface-section,
             .materials-section {
                 padding: 25px;
@@ -888,6 +971,23 @@
         <div class="header">
             <h1 style="text-align: center;">SCENE MAKER ADDON</h1>
             <p class="tagline" style="text-align: center;">Create Your Scene Quickly And Easily</p>
+        </div>
+
+        <!-- Asset Update Section with Video -->
+        <div class="asset-update-section">
+            <div class="asset-update-header">
+                <span class="asset-update-text">Asset update for pro version</span>
+                <div class="blinking-dot"></div>
+            </div>
+            <div class="asset-update-video">
+                <iframe 
+                    src="https://www.youtube.com/embed/tD6OGXU1iW0" 
+                    title="Asset Update Pro Version"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
 
         <!-- Main Demo GIF -->
@@ -1082,12 +1182,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Asset Additionnel -->
-        <div class="feature-item">
-            <h3>Additional Assets ⬇️⬇️</h3>
-            <p>Unlock an exclusive collection of <span class="highlight">additional assets</span> to enhance your Blender projects.</p>
         </div>
     </div>
 
