@@ -25,6 +25,133 @@
             margin: 0 auto;
         }
 
+        /* Discount Banner - Minimal Black & White */
+        .discount-banner {
+            background: #fff;
+            border: 1px solid #333;
+            border-radius: 2px;
+            padding: 25px 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: subtle-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes subtle-pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .discount-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #000;
+        }
+
+        .discount-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .discount-percentage {
+            font-size: 3em;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .discount-divider {
+            width: 1px;
+            height: 60px;
+            background: #ddd;
+        }
+
+        .discount-details {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .discount-label {
+            font-size: 0.75em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+
+        .discount-code-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .discount-code {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: #000;
+            letter-spacing: 3px;
+            text-transform: lowercase;
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 10px 20px;
+            border-radius: 2px;
+            border: 1px solid #e0e0e0;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .discount-code:hover {
+            background: #e8e8e8;
+            transform: scale(1.02);
+            border-color: #ccc;
+        }
+
+        .discount-code.copied {
+            background: #000;
+            color: #fff;
+        }
+
+        .copy-hint {
+            font-size: 0.65em;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            transition: all 0.2s ease;
+        }
+
+        .discount-code-wrapper:hover .copy-hint {
+            color: #666;
+            opacity: 1;
+        }
+
+        .copy-hint.copied {
+            color: #000;
+            font-weight: 500;
+        }
+
         /* Header - Black & White */
         .header {
             text-align: center;
@@ -68,7 +195,7 @@
             z-index: 1;
         }
 
-        /* Asset Update Section */
+        /* Asset Update Section with Video */
         .asset-update-section {
             background: #111;
             border: 1px solid #333;
@@ -910,6 +1037,33 @@
         }
 
         @media (max-width: 768px) {
+            .discount-banner {
+                padding: 20px;
+            }
+
+            .discount-percentage {
+                font-size: 2em;
+            }
+
+            .discount-code {
+                font-size: 1.2em;
+                letter-spacing: 2px;
+                padding: 8px 16px;
+            }
+
+            .discount-divider {
+                display: none;
+            }
+
+            .discount-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .discount-details {
+                text-align: center;
+            }
+
             .header h1 {
                 font-size: 1.8em;
                 letter-spacing: 4px;
@@ -967,6 +1121,21 @@
 </head>
 <body>
     <div class="container">
+        <!-- Discount Banner -->
+        <div class="discount-banner">
+            <div class="discount-content">
+                <div class="discount-percentage">-30%</div>
+                <div class="discount-divider"></div>
+                <div class="discount-details">
+                    <div class="discount-label">Use Coupon Code</div>
+                    <div class="discount-code-wrapper">
+                        <div class="discount-code" onclick="copyCoupon()">geo-scene</div>
+                        <div class="copy-hint">click to copy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Header -->
         <div class="header">
             <h1 style="text-align: center;">SCENE MAKER ADDON</h1>
@@ -1185,8 +1354,52 @@
         </div>
     </div>
 
-    <!-- JavaScript for Materials Carousel -->
+    <!-- JavaScript for Materials Carousel and Coupon Copy -->
     <script>
+        // Coupon Copy Function
+        function copyCoupon() {
+            const couponCode = 'geo-scene';
+            navigator.clipboard.writeText(couponCode).then(() => {
+                const codeElement = document.querySelector('.discount-code');
+                const hintElement = document.querySelector('.copy-hint');
+                
+                const originalText = codeElement.textContent;
+                const originalHint = hintElement.textContent;
+                
+                codeElement.textContent = 'copied!';
+                codeElement.classList.add('copied');
+                hintElement.textContent = 'code copied to clipboard';
+                hintElement.classList.add('copied');
+                
+                setTimeout(() => {
+                    codeElement.textContent = originalText;
+                    codeElement.classList.remove('copied');
+                    hintElement.textContent = originalHint;
+                    hintElement.classList.remove('copied');
+                }, 2500);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = couponCode;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const codeElement = document.querySelector('.discount-code');
+                const hintElement = document.querySelector('.copy-hint');
+                
+                codeElement.textContent = 'copied!';
+                hintElement.textContent = 'code copied to clipboard';
+                
+                setTimeout(() => {
+                    codeElement.textContent = couponCode;
+                    hintElement.textContent = 'click to copy';
+                }, 2500);
+            });
+        }
+
+        // Materials Carousel
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.preview-slide');
             const indicators = document.querySelectorAll('.preview-indicator');
@@ -1198,7 +1411,6 @@
             const totalSlides = slides.length;
 
             function updateCarousel() {
-                // Update slides
                 slides.forEach((slide, index) => {
                     slide.classList.remove('active');
                     if (index === currentIndex) {
@@ -1206,7 +1418,6 @@
                     }
                 });
 
-                // Update indicators
                 indicators.forEach((indicator, index) => {
                     indicator.classList.remove('active');
                     if (index === currentIndex) {
@@ -1214,7 +1425,6 @@
                     }
                 });
 
-                // Update counter
                 counter.textContent = currentIndex + 1;
             }
 
@@ -1228,11 +1438,9 @@
                 updateCarousel();
             }
 
-            // Event listeners for buttons
             nextBtn.addEventListener('click', nextSlide);
             prevBtn.addEventListener('click', prevSlide);
 
-            // Event listeners for indicators
             indicators.forEach((indicator, index) => {
                 indicator.addEventListener('click', function() {
                     currentIndex = index;
@@ -1240,7 +1448,6 @@
                 });
             });
 
-            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
                     nextSlide();
