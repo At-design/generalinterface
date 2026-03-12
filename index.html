@@ -195,7 +195,7 @@
             z-index: 1;
         }
 
-        /* Asset Update Section with Video */
+        /* Asset Update Section with Carousel */
         .asset-update-section {
             background: #111;
             border: 1px solid #333;
@@ -254,19 +254,211 @@
             }
         }
 
-        .asset-update-video {
+        /* Asset Carousel */
+        .asset-carousel {
             position: relative;
-            width: 100%;
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 60px;
         }
 
-        .asset-update-video iframe {
+        .asset-carousel-container {
+            position: relative;
             width: 100%;
             height: 450px;
+            background: #0a0a0a;
             border-radius: 2px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
             border: 1px solid #333;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        .asset-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            animation: slideFade 0.5s ease;
+        }
+
+        .asset-slide.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes slideFade {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Image Slide */
+        .asset-image-slide {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .asset-image-slide a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .asset-image-slide a:hover {
+            opacity: 0.9;
+        }
+
+        .asset-image-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        /* Video Slide */
+        .asset-video-slide {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .asset-video-slide iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 2px;
+        }
+
+        /* Carousel Controls */
+        .asset-carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: #fff;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .asset-carousel-btn::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid #000;
+            border-right: 2px solid #000;
+        }
+
+        .asset-carousel-btn:hover {
+            background: #888;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .asset-carousel-btn.prev {
+            left: 0;
+        }
+
+        .asset-carousel-btn.prev::before {
+            transform: rotate(-135deg);
+            margin-left: 3px;
+        }
+
+        .asset-carousel-btn.next {
+            right: 0;
+        }
+
+        .asset-carousel-btn.next::before {
+            transform: rotate(45deg);
+            margin-right: 3px;
+        }
+
+        .asset-carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .asset-carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 0;
+            background: #333;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .asset-carousel-indicator:hover {
+            background: #555;
+        }
+
+        .asset-carousel-indicator.active {
+            background: #fff;
+            border-color: #fff;
+        }
+
+        .asset-carousel-counter {
+            text-align: center;
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 15px;
+            letter-spacing: 2px;
+        }
+
+        .asset-carousel-counter span {
+            color: #fff;
+            font-weight: 400;
+        }
+
+        /* Click hint for image */
+        .click-hint {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 0.75em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border: 1px solid #333;
+        }
+
+        .asset-image-slide:hover .click-hint {
+            opacity: 1;
         }
 
         /* Media Containers */
@@ -1064,6 +1256,14 @@
                 text-align: center;
             }
 
+            .asset-carousel {
+                padding: 0 50px;
+            }
+
+            .asset-carousel-container {
+                height: 300px;
+            }
+
             .header h1 {
                 font-size: 1.8em;
                 letter-spacing: 4px;
@@ -1075,15 +1275,6 @@
 
             .header .tagline {
                 font-size: 0.9em;
-            }
-
-            .asset-update-video iframe {
-                height: 250px;
-            }
-
-            .asset-update-text {
-                font-size: 0.8em;
-                letter-spacing: 2px;
             }
 
             .interface-section,
@@ -1142,20 +1333,51 @@
             <p class="tagline" style="text-align: center;">Create Your Scene Quickly And Easily</p>
         </div>
 
-        <!-- Asset Update Section with Video -->
+        <!-- Asset Update Section with Carousel -->
         <div class="asset-update-section">
             <div class="asset-update-header">
                 <span class="asset-update-text">Asset update for pro version</span>
                 <div class="blinking-dot"></div>
             </div>
-            <div class="asset-update-video">
-                <iframe 
-                    src="https://www.youtube.com/embed/tD6OGXU1iW0" 
-                    title="Asset Update Pro Version"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+            
+            <!-- Asset Carousel -->
+            <div class="asset-carousel">
+                <button class="asset-carousel-btn prev" id="assetPrevBtn"></button>
+                
+                <div class="asset-carousel-container">
+                    <!-- Image Slide (First/Default) -->
+                    <div class="asset-slide active" data-index="0">
+                        <div class="asset-image-slide">
+                            <a href="https://superhivemarket.com/products/automotion-node" target="_blank" title="Click to view AutoMotion Node">
+                                <img src="https://i.imgur.com/SCENE1.png" alt="AutoMotion Pack V1 - A.T Design Studio">
+                                <div class="click-hint">Click to open product</div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Slide (Second) -->
+                    <div class="asset-slide" data-index="1">
+                        <div class="asset-video-slide">
+                            <iframe 
+                                src="https://www.youtube.com/embed/tD6OGXU1iW0" 
+                                title="Asset Update Pro Version"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="asset-carousel-btn next" id="assetNextBtn"></button>
+            </div>
+
+            <div class="asset-carousel-indicators">
+                <div class="asset-carousel-indicator active" data-index="0"></div>
+                <div class="asset-carousel-indicator" data-index="1"></div>
+            </div>
+
+            <div class="asset-carousel-counter">
+                <span id="currentAsset">1</span> / <span>2</span>
             </div>
         </div>
 
@@ -1354,7 +1576,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for Materials Carousel and Coupon Copy -->
+    <!-- JavaScript for Carousels and Coupon Copy -->
     <script>
         // Coupon Copy Function
         function copyCoupon() {
@@ -1399,8 +1621,56 @@
             });
         }
 
-        // Materials Carousel
+        // Asset Carousel
         document.addEventListener('DOMContentLoaded', function() {
+            const assetSlides = document.querySelectorAll('.asset-slide');
+            const assetIndicators = document.querySelectorAll('.asset-carousel-indicator');
+            const assetPrevBtn = document.getElementById('assetPrevBtn');
+            const assetNextBtn = document.getElementById('assetNextBtn');
+            const assetCounter = document.getElementById('currentAsset');
+            
+            let assetCurrentIndex = 0;
+            const assetTotalSlides = assetSlides.length;
+
+            function updateAssetCarousel() {
+                assetSlides.forEach((slide, index) => {
+                    slide.classList.remove('active');
+                    if (index === assetCurrentIndex) {
+                        slide.classList.add('active');
+                    }
+                });
+
+                assetIndicators.forEach((indicator, index) => {
+                    indicator.classList.remove('active');
+                    if (index === assetCurrentIndex) {
+                        indicator.classList.add('active');
+                    }
+                });
+
+                assetCounter.textContent = assetCurrentIndex + 1;
+            }
+
+            function nextAssetSlide() {
+                assetCurrentIndex = (assetCurrentIndex + 1) % assetTotalSlides;
+                updateAssetCarousel();
+            }
+
+            function prevAssetSlide() {
+                assetCurrentIndex = (assetCurrentIndex - 1 + assetTotalSlides) % assetTotalSlides;
+                updateAssetCarousel();
+            }
+
+            assetNextBtn.addEventListener('click', nextAssetSlide);
+            assetPrevBtn.addEventListener('click', prevAssetSlide);
+
+            assetIndicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    assetCurrentIndex = index;
+                    updateAssetCarousel();
+                });
+            });
+
+            // Materials Carousel
             const slides = document.querySelectorAll('.preview-slide');
             const indicators = document.querySelectorAll('.preview-indicator');
             const prevBtn = document.getElementById('prevMaterialBtn');
@@ -1448,11 +1718,17 @@
                 });
             });
 
+            // Keyboard navigation for both carousels
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    nextSlide();
-                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    prevSlide();
+                // Only if not focused on an input
+                if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                    if (e.key === 'ArrowRight') {
+                        nextAssetSlide();
+                        nextSlide();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevAssetSlide();
+                        prevSlide();
+                    }
                 }
             });
         });
