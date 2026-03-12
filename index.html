@@ -308,6 +308,7 @@
             align-items: center;
             justify-content: center;
             background: #000;
+            position: relative;
         }
 
         .asset-image-slide a {
@@ -319,10 +320,11 @@
             justify-content: center;
             cursor: pointer;
             transition: opacity 0.3s ease;
+            text-decoration: none;
         }
 
         .asset-image-slide a:hover {
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         .asset-image-slide img {
@@ -332,6 +334,7 @@
             height: auto;
             object-fit: contain;
             border-radius: 2px;
+            display: block;
         }
 
         /* Video Slide */
@@ -442,19 +445,20 @@
         /* Click hint for image */
         .click-hint {
             position: absolute;
-            bottom: 15px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: #fff;
-            padding: 8px 16px;
-            font-size: 0.75em;
+            padding: 10px 20px;
+            font-size: 0.7em;
             letter-spacing: 2px;
             text-transform: uppercase;
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
             border: 1px solid #333;
+            border-radius: 2px;
         }
 
         .asset-image-slide:hover .click-hint {
@@ -1264,6 +1268,11 @@
                 height: 300px;
             }
 
+            .click-hint {
+                font-size: 0.6em;
+                padding: 6px 12px;
+            }
+
             .header h1 {
                 font-size: 1.8em;
                 letter-spacing: 4px;
@@ -1349,7 +1358,7 @@
                     <div class="asset-slide active" data-index="0">
                         <div class="asset-image-slide">
                             <a href="https://superhivemarket.com/products/automotion-node" target="_blank" title="Click to view AutoMotion Node">
-                                <img src="https://i.imgur.com/SCENE1.png" alt="AutoMotion Pack V1 - A.T Design Studio">
+                                <img src="https://assets.superhivemarket.com/cache/405184282d4c5aeb25b947b116a29aef.png" alt="AutoMotion Pack V1 - A.T Design Studio" style="max-width: 100%;">
                                 <div class="click-hint">Click to open product</div>
                             </a>
                         </div>
